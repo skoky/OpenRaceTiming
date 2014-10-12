@@ -1,0 +1,7 @@
+packages/*
+.idea/*
+*.iml
+pubspec.lock
+.buildlog
+*~
+
