@@ -19,27 +19,27 @@ We plan to do brand new, fresh idea timing software that will be:
 * Results filtering on a flexible screen, including results table columns flexible sellection
 * Plugable calculators for results - covering specific of different sports
 * Plugable connectors to different timing devices like Amb mylaps or others
-..* device simulator
-..* Manual counter using keyboard
-..* Other devices plugin
+	* device simulator
+	* Manual counter using keyboard
+	* Other devices plugin
 * Results reporting plugin and editor
-..* Reporting for printing
-..* Support results panel
-..* In-place editor of report layout
-..* Reporting to cloud web
-..* Social network connector
+	* Reporting for printing
+	* Support results panel
+	* In-place editor of report layout
+	* Reporting to cloud web
+	* Social network connector
 * Plugable import/export data framework
 * Simple mobile-like UI 
 * Addtional useful functions
-..* Driver search, full text search
-..* Time schedule planning
-..* Language editor
-..* Driver ranking calculator
+	* Driver search, full text search
+	* Time schedule planning
+	* Language editor
+	* Driver ranking calculator
 * Flexible architecture for client/server setup or client-only setup
 * Flexible data store options from simple fiel store upto database or cloud store
 * Wide platform support
-..* Primary platforms: Windows, Mac OS, Chrome/browser
-..* Secondary platforms: Raspberry Pi, Linux, Android, iOS, mobile Windows
+	* Primary platforms: Windows, Mac OS, Chrome/browser
+	* Secondary platforms: Raspberry Pi, Linux, Android, iOS, mobile Windows
 * Written in a new modern programming language like Dart [https://www.dartlang.org]
 
 ## Module's structure
