@@ -1,5 +1,5 @@
 import 'dart:html';
-import '../../core/openracetiming.dart';
+import '../../core/core.dart';
 
 void main() {
   new Presenter(); 
@@ -8,12 +8,12 @@ void main() {
 class Presenter {
 
   Presenter() {
-    var ort = new OpenRaceTiming();
+    var core = new Core();
     updateStatus("Init done");
 
     
-    ort.getBus().on(MyEvent, (MyEvent event) => 
-          updateStatus("Event received:"+event.description));
+    core.getBus().on(MyEvent, (MyEvent event) =>
+          updateStatus("Event received:"+event.selector+" data:"+event.jsonData));
 
   }
   

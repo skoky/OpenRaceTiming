@@ -7,17 +7,14 @@ import '../calculator/testcalculator.dart';
 EventBus event_bus;
 
 class MyEvent extends Event {
-  String description;
-  MyEvent(this.description);
+  String selector;
+  String jsonData;
+  MyEvent(this.selector,this.jsonData);
 }
 
-void main() {
-  new OpenRaceTiming();
-}
+class Core {
 
-class OpenRaceTiming {
-
-OpenRaceTiming() {
+Core() {
   print("start");
   event_bus = new EventBus();
   
