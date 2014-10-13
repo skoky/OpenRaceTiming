@@ -9,14 +9,14 @@ We are trying to answer these questions by modular opensource timing software. I
 
 We plan to do brand new, fresh idea timing software that will be:
 
-* Universal race timing framework for multiple sports, free, opensurced
+* Universal race timing framework for multiple sports, free, open-sourced
 * Will have racing events editor, with multiple runs per event
 * Flexible racers editor
 * Speech processor to express results
 * Finish line camera plugins support
 * Flexible results display with multiple views over mobile, web etc
 * Simple clients for mobile client targeted to end users
-* Results filtering on a flexible screen, including results table columns flexible sellection
+* Results filtering on a flexible screen, including results table columns flexible selection
 * Plugable calculators for results - covering specific of different sports
 * Plugable connectors to different timing devices like Amb mylaps or others
 	* device simulator
@@ -30,7 +30,7 @@ We plan to do brand new, fresh idea timing software that will be:
 	* Social network connector
 * Plugable import/export data framework
 * Simple mobile-like UI 
-* Addtional useful functions
+* Additional useful functions
 	* Driver search, full text search
 	* Time schedule planning
 	* Language editor
@@ -46,11 +46,11 @@ We plan to do brand new, fresh idea timing software that will be:
 
 ![Open Race Timing modules](https://raw.githubusercontent.com/skoky/OpenRaceTiming/master/doc/ORT_modules.png)
 
-* `Device connector` - has a timing device specific conenction code and extracts data timing data. Provides device events as soon as device reports passing, sessions or timelines. Also processes commands to the device from user
-* `Calculator` - core component of the system - receives events from device and caluclates timing data based on sports specific rules
-* `Storage` - stores data with a flexible structure. Provides searching, reporting and cahcing functionalities
-* `Presenter` - express calculator's results to timing operator and end user in flexible,multiplatfrom way
-* `Reporter` - express statuc result, historical data and trends to printer, cloud, social network etc
+* `Device connector` - has a timing device specific connection code and extracts data timing data. Provides device events as soon as device reports passing, sessions or timelines. Also processes commands to the device from user
+* `Calculator` - core component of the system - receives events from device and calculates timing data based on sports specific rules
+* `Storage` - stores data with a flexible structure. Provides searching, reporting and caching functionalities
+* `Presenter` - express calculator's results to timing operator and end user in flexible,multi-platform way
+* `Reporter` - express status result, historical data and trends to printer, cloud, social network etc
 * `Shared data editor` - is a racers, events, laps, finals and other data editor
 * `Data exchanger` - exports/imports data from/to another system, format etc
 * `Event wizard` - drivers user from an event creation, data entry and timing processing
