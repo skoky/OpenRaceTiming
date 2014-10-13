@@ -44,7 +44,7 @@ We plan to do brand new, fresh idea timing software that will be:
 
 ## Module's structure
 
-![Open Race Timing modules](https://raw.githubusercontent.com/skoky/OpenRaceTiming/master/ORT_modules.png)
+![Open Race Timing modules](https://raw.githubusercontent.com/skoky/OpenRaceTiming/master/doc/ORT_modules.png)
 
 * `Device connector` - has a timing device specific conenction code and extracts data timing data. Provides device events as soon as device reports passing, sessions or timelines. Also processes commands to the device from user
 * `Calculator` - core component of the system - receives events from device and caluclates timing data based on sports specific rules
