@@ -6,6 +6,6 @@ import '../core/openracetiming.dart';
 class TestCalculator {
 
   TestCalculator(EventBus event_bus) {
-    event_bus.on(MyEvent, (MyEvent event) => print("event"));
+    event_bus.on(MyEvent, (MyEvent event) => print("Event received:"+event.description));
   }
 }

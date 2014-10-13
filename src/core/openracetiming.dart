@@ -12,6 +12,12 @@ class MyEvent extends Event {
 }
 
 void main() {
+  new OpenRaceTiming();
+}
+
+class OpenRaceTiming {
+
+OpenRaceTiming() {
   print("start");
   event_bus = new EventBus();
   
@@ -19,4 +25,10 @@ void main() {
   TestDevice test_device = new TestDevice(event_bus);
   
   print("stop");
+}
+
+EventBus getBus() {
+  return event_bus;
+}
+
 }
