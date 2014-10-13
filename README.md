@@ -3,9 +3,9 @@ Open Race Timing software
 
 **** WORK IN PROGRESS ***
 
-This will be an universal+modular and open race timing software. Why should be all race timing softwares tighly coupled to one or few sports only? Why should be more ambitious timing solution complex? Why are all working timing softwares closed-source? How can public make sure that timing is calculated properly if it's sources are not public? 
+This will be an universal+modular and open race timing software. Why should be all race timing softwares tightly coupled to one or few sports only? Why should be more ambitious timing solution complex? Why are all working timing softwares closed-source? How can public make sure that timing is calculated properly if it's sources are not public?
 
-We are trying to answer these questions by modular opensource timing software. Interested? Join us. All kind of experiences welcome!
+We are trying to answer these questions by modular open-source timing software. Interested? Join us. All kind of experiences welcome!
 
 We plan to do brand new, fresh idea timing software that will be:
 
