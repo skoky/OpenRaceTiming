@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:async';
-import 'package:http_server/http_server.dart';
+import 'dart:convert';
+import 'package:http_server/http_server.dart' show VirtualDirectory;
 import 'package:event_commander/event_commander.dart';
 
 import 'device/testdevice.dart';
@@ -14,6 +15,10 @@ class MyEvent extends Event {
   MyEvent(this.selector,this.jsonData);
 }
 
+handleMsg(msg) {
+  print('Message received: $msg');
+}
+
 void main() {
   print("start main");
   
@@ -21,9 +26,15 @@ void main() {
     ..allowDirectoryListing = true;
 
   runZoned(() {
-    HttpServer.bind('0.0.0.0', 7777).then((server) {
-      print('Server running');
-      server.listen(staticFiles.serveRequest);
+    HttpServer.bind('127.0.0.1', 4040).then((server) {
+      server.listen((HttpRequest req) {
+        if (req.uri.path == '/ws') {
+          // Upgrade a HttpRequest to a WebSocket connection.
+          WebSocketTransformer.upgrade(req).then((socket) {
+             socket.listen(handleMsg);
+          });
+        }
+      });
     });
   },
   onError: (e, stackTrace) => print('Oh noes! $e $stackTrace'));
