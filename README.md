@@ -57,5 +57,15 @@ We plan to do brand new, fresh idea timing software that will be:
 
 Modules are interconnected by flexible, multi-structure, performing bus way. The bus is in memory native communication among modules based on a standard data structure like JSON.
 
- 
+All modules should be tight together with calculator as it defines data to be calculated for racer and event. Screens and
+datastore should be flexible to show and store it. Reporter should has in-place editor to edit reporting layout and connection to
+publishing destinations.
+
+Screens are visible artifacts for the user. We have prepared a `very raw` design of screens and screen flow to have a
+starting point for discussion. Join us and review screen design to cover requirements you need on for you favorite sport.
+
+![Open Race Timing modules](https://raw.githubusercontent.com/skoky/OpenRaceTiming/master/doc/mockups.png)
+
+All screens are based on tables. These should be very flexible to make sure users comfort while presenting data.
+
 
