@@ -10,3 +10,4 @@ class TestCalculator {
     event_bus.on(MyEvent, (MyEvent event) => print("Event received:"+event.selector));
   }
 }
+

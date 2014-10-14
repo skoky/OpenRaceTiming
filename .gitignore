@@ -4,4 +4,7 @@ packages/*
 pubspec.lock
 .buildlog
 *~
+!bin/*
+!bin
+
 
