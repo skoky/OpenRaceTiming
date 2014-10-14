@@ -1,7 +1,7 @@
 library device;
 
 import 'package:event_commander/event_commander.dart';
-import '../core/core.dart';
+import '../ort.dart';
 import 'dart:async';
 
 

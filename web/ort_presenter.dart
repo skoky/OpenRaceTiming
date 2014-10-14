@@ -1,5 +1,5 @@
 import 'dart:html';
-import '../../core/core.dart';
+import '../bin/ort.dart';
 
 void main() {
   new Presenter(); 
