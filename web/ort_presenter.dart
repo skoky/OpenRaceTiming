@@ -8,12 +8,9 @@ void main() {
 class Presenter {
 
   Presenter() {
-    var core = new Core();
     updateStatus("Init done");
 
-    
-    core.getBus().on(MyEvent, (MyEvent event) =>
-          updateStatus("Event received:"+event.selector+" data:"+event.jsonData));
+    // TODO add ws listener to get events from server
 
   }
   

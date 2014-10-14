@@ -25,8 +25,8 @@ class TestDevice {
        postEvent();
      });
     stream.listen((result) {
-       print("Result:"+result);
-     });    
+       print("Result");
+     });
   }
 }
 
