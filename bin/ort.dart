@@ -19,6 +19,8 @@ handleMsg(msg) {
   print('Message received: $msg');
 }
 
+WebSocket webSocket;
+
 void main() {
   print("start main");
   
@@ -32,6 +34,7 @@ void main() {
           // Upgrade a HttpRequest to a WebSocket connection.
           WebSocketTransformer.upgrade(req).then((socket) {
              socket.listen(handleMsg);
+             webSocket=socket;
           });
         }
       });
@@ -42,9 +45,14 @@ void main() {
   TestCalculator test_calculator = new TestCalculator(event_bus);
   TestDevice test_device = new TestDevice(event_bus);
 
-  event_bus.on(MyEvent, (MyEvent event) =>
-  print("TODO send to WS to client:"+event.selector));
-  // updateStatus("Event received:"+event.selector+" data:"+event.jsonData));
-
+  event_bus.on(MyEvent, (MyEvent event) =>  
+      updateRecords(event));
+  
   print("stop main");
+}
+
+void updateRecords(MyEvent event) {
+  if (event.selector.startsWith("calculator/TestCalculator/update"))
+    print("TODO propagate event to GUI:"+event.jsonData);
+  //TODO send data to WS
 }
