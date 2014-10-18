@@ -21,7 +21,7 @@ class TestDevice {
   }
 
   TestDevice(EventBus event_bus) {
-    new Timer.periodic(const Duration(seconds:1), (t) {
+    new Timer.periodic(const Duration(seconds:5), (t) {
         postEvent();
         });
   }

@@ -6,6 +6,7 @@ import 'package:event_commander/event_commander.dart';
 
 import 'device/testdevice.dart';
 import 'calculator/testcalculator.dart';
+import 'storage/storage.dart';
 
 EventBus event_bus=new EventBus();
 
@@ -44,6 +45,7 @@ void main() {
   
   TestCalculator test_calculator = new TestCalculator(event_bus);
   TestDevice test_device = new TestDevice(event_bus);
+  Storage storage = new Storage(event_bus);
 
   event_bus.on(MyEvent, (MyEvent event) =>  
       updateRecords(event));
