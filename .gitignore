@@ -6,5 +6,4 @@ pubspec.lock
 *~
 !bin/*
 !bin
-
-
+.DS_Store

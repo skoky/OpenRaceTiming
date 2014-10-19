@@ -4,6 +4,10 @@ import 'dart:convert';
 import 'package:http_server/http_server.dart' show VirtualDirectory;
 import 'package:event_commander/event_commander.dart';
 
+import 'package:redstone/server.dart' as app;
+import 'package:di/di.dart';
+import 'package:mongo_dart/mongo_dart.dart';
+
 import 'device/testdevice.dart';
 import 'calculator/testcalculator.dart';
 import 'storage/storage.dart';
@@ -23,7 +27,15 @@ handleMsg(msg) {
 WebSocket webSocket;
 
 void main() {
-  print("start main");
+  
+  app.setupConsoleLog();
+  Db db = new Db('mongodb://localhost/snaps');
+    db.open().then((_) {
+    app.addModule(new Module()..bind(Db, toValue: db));
+    //app.addPlugin(ObjectMapper);
+    app.start(port: 8082);
+  });
+  
   
   var staticFiles = new VirtualDirectory('.')
     ..allowDirectoryListing = true;

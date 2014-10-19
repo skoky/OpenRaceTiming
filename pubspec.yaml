@@ -7,6 +7,7 @@ dependencies:
   mongo_dart: ">=0.1.44 <0.2.0"
   bwu_datagrid: ">=0.0.18 <0.1.0"
   polymer: '>=0.12.1 <0.16.0'
+  redstone: any
 
 transformers:
 - polymer:

@@ -27,7 +27,7 @@ void processEvent(MyEvent event) {
     store(event);
   } else if (event.selector.startsWith("calculator/TestCalculator/update")) {
       String id = JSON.decode(event.jsonData)['id'];      
-      update('id',id,event);
+    update('id',id,event);
   }
 }
 
