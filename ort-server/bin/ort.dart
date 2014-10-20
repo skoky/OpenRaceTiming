@@ -7,6 +7,9 @@ import 'package:redstone/server.dart' as app;
 import 'package:di/di.dart';
 import 'package:mongo_dart/mongo_dart.dart';
 
+@app.Install()
+import '../lib/ort_service.dart';
+
 import 'device/testdevice.dart';
 import 'calculator/testcalculator.dart';
 import 'storage/storage.dart';
@@ -34,7 +37,7 @@ void main() {
     app.addModule(new Module()..bind(Db, toValue: db));
     //app.addPlugin(ObjectMapper);
     app.start(port: 8082);
-    app.setShelfHandler(createStaticHandler("../ort-client/web", 
+    app.setShelfHandler(createStaticHandler("../../ort-client/web", 
         defaultDocument: "ort_event_main.html", 
         serveFilesOutsidePath: true));
   });

@@ -11,4 +11,5 @@
 .pub/*
 ort-client/packages/*
 ort-server/packages/*
+*/build/*
 
