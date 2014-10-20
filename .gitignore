@@ -9,3 +9,6 @@
 .DS_Store
 */.pub/*
 .pub/*
+ort-client/packages/*
+ort-server/packages/*
+

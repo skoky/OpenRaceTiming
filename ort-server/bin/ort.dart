@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'dart:async';
-import 'dart:convert';
 import 'package:http_server/http_server.dart' show VirtualDirectory;
 import 'package:event_commander/event_commander.dart';
 
@@ -11,6 +10,7 @@ import 'package:mongo_dart/mongo_dart.dart';
 import 'device/testdevice.dart';
 import 'calculator/testcalculator.dart';
 import 'storage/storage.dart';
+import 'package:shelf_static/shelf_static.dart';
 
 EventBus event_bus=new EventBus();
 
@@ -34,6 +34,9 @@ void main() {
     app.addModule(new Module()..bind(Db, toValue: db));
     //app.addPlugin(ObjectMapper);
     app.start(port: 8082);
+    app.setShelfHandler(createStaticHandler("../ort-client/web", 
+        defaultDocument: "ort_event_main.html", 
+        serveFilesOutsidePath: true));
   });
   
   
