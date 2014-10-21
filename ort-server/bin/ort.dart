@@ -38,7 +38,7 @@ void main() {
     //app.addPlugin(ObjectMapper);
     app.start(port: 8082);
     app.setShelfHandler(createStaticHandler("../../ort-client/web", 
-        defaultDocument: "ort_event_main.html", 
+        defaultDocument: "ort_console.html", 
         serveFilesOutsidePath: true));
   });
   
@@ -60,6 +60,7 @@ void main() {
     });
   },
   onError: (e, stackTrace) => print('Oh noes! $e $stackTrace'));
+
   
   TestCalculator test_calculator = new TestCalculator(event_bus);
   TestDevice test_device = new TestDevice(event_bus);
@@ -72,7 +73,11 @@ void main() {
 }
 
 void updateRecords(MyEvent event) {
-  if (event.selector.startsWith("calculator/TestCalculator/update"))
-    print("TODO propagate event to GUI:"+event.jsonData);
-  //TODO send data to WS
+  if (event.selector.startsWith("calculator/TestCalculator/update")) {
+    if (webSocket!=null) {
+      print("Propagating event to GUI:"+event.jsonData);
+      webSocket.add(event.jsonData);
+    }
+  }
+  
 }
