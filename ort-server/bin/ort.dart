@@ -40,7 +40,7 @@ void main() {
     app.setShelfHandler(createStaticHandler("../../ort-client/web", 
         defaultDocument: "ort_console.html", 
         serveFilesOutsidePath: true));
-  });
+  }).catchError((error) => print("Unable to connect to MongoDB:$error"));
   
   
   var staticFiles = new VirtualDirectory('.')
@@ -69,7 +69,7 @@ void main() {
   event_bus.on(MyEvent, (MyEvent event) =>  
       updateRecords(event));
   
-  print("stop main");
+  print("main done");
 }
 
 void updateRecords(MyEvent event) {
