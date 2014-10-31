@@ -1,4 +1,4 @@
-name: OpenRaceTimingTest
+name: OpenRaceTimingServer
 description: A sample command-line application
 dependencies:
   event_commander: any

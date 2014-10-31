@@ -1,7 +1,7 @@
+import 'dart:convert';
 import 'package:mongo_dart/mongo_dart.dart';
 import 'package:event_commander/event_commander.dart';
-import '../ort.dart';
-import 'dart:convert';
+import 'package:OpenRaceTimingServer/bus.dart';
 
 /*
  * Stores data into MongoDB
@@ -16,7 +16,7 @@ class Storage {
 Storage(EventBus bus) {
   this.bus=bus;
   bus.on(MyEvent, (MyEvent event) => processEvent(event));
-  
+
 }
 
    

@@ -8,20 +8,15 @@ import 'package:di/di.dart';
 import 'package:mongo_dart/mongo_dart.dart';
 
 @app.Install()
-import '../lib/ort_service.dart';
-
-import 'device/testdevice.dart';
-import 'calculator/testcalculator.dart';
-import 'storage/storage.dart';
+import 'package:OpenRaceTimingServer/ort_service.dart';
+import 'package:OpenRaceTimingServer/reporter/reporter.dart';
+import 'package:OpenRaceTimingServer/device/testdevice.dart';
+import 'package:OpenRaceTimingServer/calculator/testcalculator.dart';
+import 'package:OpenRaceTimingServer/bus.dart';
+import 'package:OpenRaceTimingServer/storage/storage.dart';
 import 'package:shelf_static/shelf_static.dart';
 
-EventBus event_bus=new EventBus();
-
-class MyEvent extends Event {
-  String selector;
-  String jsonData;
-  MyEvent(this.selector,this.jsonData);
-}
+EventBus event_bus = new EventBus();
 
 handleMsg(msg) {
   print('Message received: $msg');
@@ -30,19 +25,19 @@ handleMsg(msg) {
 WebSocket webSocket;
 
 void main() {
-  
+
   app.setupConsoleLog();
   Db db = new Db('mongodb://localhost/snaps');
     db.open().then((_) {
     app.addModule(new Module()..bind(Db, toValue: db));
     //app.addPlugin(ObjectMapper);
-    app.start(port: 8082);
-    app.setShelfHandler(createStaticHandler("../../ort-client/web", 
-        defaultDocument: "ort_console.html", 
-        serveFilesOutsidePath: true));
+  app.start(port: 8082);
+  app.setShelfHandler(createStaticHandler("../../ort-client/web",
+  defaultDocument: "ort_console.html",
+  serveFilesOutsidePath: true));
   }).catchError((error) => print("Unable to connect to MongoDB:$error"));
-  
-  
+
+
   var staticFiles = new VirtualDirectory('.')
     ..allowDirectoryListing = true;
 
@@ -52,8 +47,8 @@ void main() {
         if (req.uri.path == '/ws') {
           // Upgrade a HttpRequest to a WebSocket connection.
           WebSocketTransformer.upgrade(req).then((socket) {
-             socket.listen(handleMsg);
-             webSocket=socket;
+            socket.listen(handleMsg);
+            webSocket = socket;
           });
         }
       });
@@ -61,23 +56,23 @@ void main() {
   },
   onError: (e, stackTrace) => print('Oh noes! $e $stackTrace'));
 
-  
+
   TestCalculator test_calculator = new TestCalculator(event_bus);
   TestDevice test_device = new TestDevice(event_bus);
   Storage storage = new Storage(event_bus);
 
-  event_bus.on(MyEvent, (MyEvent event) =>  
-      updateRecords(event));
-  
+  event_bus.on(MyEvent, (MyEvent event) =>
+  updateRecords(event));
+  new Reporter();
   print("main done");
 }
 
 void updateRecords(MyEvent event) {
   if (event.selector.startsWith("calculator/TestCalculator/update")) {
-    if (webSocket!=null) {
-      print("Propagating event to GUI:"+event.jsonData);
+    if (webSocket != null) {
+      print("Propagating event to GUI:" + event.jsonData);
       webSocket.add(event.jsonData);
     }
   }
-  
+
 }

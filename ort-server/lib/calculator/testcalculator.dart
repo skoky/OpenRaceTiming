@@ -1,14 +1,13 @@
-library calculator;
-
-import 'package:event_commander/event_commander.dart';
-import '../ort.dart';
 import 'dart:convert';
+import 'package:event_commander/event_commander.dart';
+import 'package:OpenRaceTimingServer/bus.dart';
 
 class TestCalculator {
 
   List results = new List();  // TODO improve storage
+  EventBus event_bus;
 
-  TestCalculator(EventBus event_bus) {
+  TestCalculator(this.event_bus) {
     event_bus.on(MyEvent, (MyEvent event) => processEvent(event));
   }
   
