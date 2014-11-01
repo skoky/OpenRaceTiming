@@ -8,12 +8,12 @@ import 'package:di/di.dart';
 import 'package:mongo_dart/mongo_dart.dart';
 
 @app.Install()
-import 'package:OpenRaceTimingServer/ort_service.dart';
-import 'package:OpenRaceTimingServer/reporter/reporter.dart';
-import 'package:OpenRaceTimingServer/device/testdevice.dart';
-import 'package:OpenRaceTimingServer/calculator/testcalculator.dart';
-import 'package:OpenRaceTimingServer/bus.dart';
-import 'package:OpenRaceTimingServer/storage/storage.dart';
+import 'package:OpenRaceTiming/ort_service.dart';
+import 'package:OpenRaceTiming/reporter/reporter.dart';
+import 'package:OpenRaceTiming/device/testdevice.dart';
+import 'package:OpenRaceTiming/calculator/testcalculator.dart';
+import 'package:OpenRaceTiming/bus.dart';
+import 'package:OpenRaceTiming/storage/storage.dart';
 import 'package:shelf_static/shelf_static.dart';
 
 EventBus event_bus = new EventBus();
@@ -32,7 +32,7 @@ void main() {
     app.addModule(new Module()..bind(Db, toValue: db));
     //app.addPlugin(ObjectMapper);
   app.start(port: 8082);
-  app.setShelfHandler(createStaticHandler("../../ort-client/web",
+  app.setShelfHandler(createStaticHandler("../web",
   defaultDocument: "ort_console.html",
   serveFilesOutsidePath: true));
   }).catchError((error) => print("Unable to connect to MongoDB:$error"));

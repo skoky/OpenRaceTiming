@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:mongo_dart/mongo_dart.dart';
 import 'package:event_commander/event_commander.dart';
-import 'package:OpenRaceTimingServer/bus.dart';
+import 'package:OpenRaceTiming/bus.dart';
 
 /*
  * Stores data into MongoDB
