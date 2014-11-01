@@ -17,3 +17,6 @@ transformers:
 - polymer:
     entry_points:
     - web/ort_event_main.html
+
+dev_dependencies:
+  unittest: any
