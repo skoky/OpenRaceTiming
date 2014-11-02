@@ -17,5 +17,17 @@ class OrtService {
     
     return jsonData;
   }
+
+  @app.Route("/racers", methods: const [app.GET])
+  getRacers() {
+    Map mapResponse = new Map();
+    mapResponse["racerName"] = "Michal";
+    mapResponse["transponderId"] = "123344";
+    mapResponse["category"] = "Beginner";
+
+    String jsonData = JSON.encode(mapResponse);
+
+    return jsonData;
+  }
   
 }

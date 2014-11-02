@@ -99,7 +99,7 @@ class Connector {
     void connect() {
        connectPending = false;
        setStatus("connecting...");
-       webSocket = new WebSocket('ws://127.0.0.1:4040/ws');
+       webSocket = new WebSocket('ws://127.0.0.1:8082/records');
        webSocket.onOpen.first.then((_) {
          setStatus('before connected');
          onConnected();

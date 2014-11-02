@@ -27,35 +27,13 @@ WebSocket webSocket;
 void main() {
 
   app.setupConsoleLog();
-  Db db = new Db('mongodb://localhost/snaps');
-    db.open().then((_) {
-    app.addModule(new Module()..bind(Db, toValue: db));
-    //app.addPlugin(ObjectMapper);
   app.start(port: 8082);
   app.setShelfHandler(createStaticHandler("../web",
   defaultDocument: "ort_console.html",
   serveFilesOutsidePath: true));
-  }).catchError((error) => print("Unable to connect to MongoDB:$error"));
-
 
   var staticFiles = new VirtualDirectory('.')
     ..allowDirectoryListing = true;
-
-  runZoned(() {
-    HttpServer.bind('127.0.0.1', 4040).then((server) {
-      server.listen((HttpRequest req) {
-        if (req.uri.path == '/ws') {
-          // Upgrade a HttpRequest to a WebSocket connection.
-          WebSocketTransformer.upgrade(req).then((socket) {
-            socket.listen(handleMsg);
-            webSocket = socket;
-          });
-        }
-      });
-    });
-  },
-  onError: (e, stackTrace) => print('Oh noes! $e $stackTrace'));
-
 
   TestCalculator test_calculator = new TestCalculator(event_bus);
   TestDevice test_device = new TestDevice(event_bus);
@@ -64,8 +42,19 @@ void main() {
   event_bus.on(MyEvent, (MyEvent event) =>
   updateRecords(event));
   new Reporter();
+
   print("main done");
 }
+
+@app.Interceptor(r'/.*')
+interceptor() {
+  app.chain.next(() {
+    app.response = app.response.change(headers: {
+        "Access-Control-Allow-Origin": "*"
+    });
+  });
+}
+
 
 void updateRecords(MyEvent event) {
   if (event.selector.startsWith("calculator/TestCalculator/update")) {
