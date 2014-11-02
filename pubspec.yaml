@@ -1,4 +1,4 @@
-name: OpenRaceTimingClient
+name: OpenRaceTiming
 description: A sample command-line application
 dependencies:
   event_commander: any
@@ -6,8 +6,17 @@ dependencies:
   bwu_datagrid: ">=0.0.18 <0.1.0"
   polymer: '>=0.12.1 <0.16.0'
   shelf_static: ">=0.2.1 <0.3.0"
+  event_commander: any
+  browser: any
+  http_server: any
+  mongo_dart: ">=0.1.44 <0.2.0"
+  redstone: any
+  shelf_static: ">=0.2.1 <0.3.0"
 
 transformers:
 - polymer:
     entry_points:
-    - web/ort_event_main.html  
+    - web/ort_event_main.html
+
+dev_dependencies:
+  unittest: any

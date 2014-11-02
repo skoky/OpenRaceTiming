@@ -1,9 +1,0 @@
-name: OpenRaceTimingServer
-description: A sample command-line application
-dependencies:
-  event_commander: any
-  browser: any
-  http_server: any
-  mongo_dart: ">=0.1.44 <0.2.0"
-  redstone: any 
-  shelf_static: ">=0.2.1 <0.3.0"

@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:math';
 import 'dart:convert';
 import 'package:event_commander/event_commander.dart';
-import 'package:OpenRaceTimingServer/bus.dart';
+import 'package:OpenRaceTiming/bus.dart';
 
 class TestDevice {
 

@@ -1,0 +1,5 @@
+simulators:
+  test/testdevice.dart
+  tranx/TranXDeviceSmulator.dart
+
+
