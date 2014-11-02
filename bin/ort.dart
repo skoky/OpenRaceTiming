@@ -10,7 +10,7 @@ import 'package:mongo_dart/mongo_dart.dart';
 @app.Install()
 import 'package:OpenRaceTiming/ort_service.dart';
 import 'package:OpenRaceTiming/reporter/reporter.dart';
-import 'package:OpenRaceTiming/device/testdevice.dart';
+import 'package:OpenRaceTiming/device/test/testdevice.dart';
 import 'package:OpenRaceTiming/calculator/testcalculator.dart';
 import 'package:OpenRaceTiming/bus.dart';
 import 'package:OpenRaceTiming/storage/storage.dart';
