@@ -27,8 +27,8 @@ void main() {
   app.setupConsoleLog();
   app.start(port: 8082);
   app.setShelfHandler(createStaticHandler("../web",
-  defaultDocument: "ort_console.html",
-  serveFilesOutsidePath: true));
+    defaultDocument: "ort_console.html",
+    serveFilesOutsidePath: true));
 
   var staticFiles = new VirtualDirectory('.')
     ..allowDirectoryListing = true;
@@ -38,7 +38,7 @@ void main() {
   Storage storage = new Storage(event_bus);
 
   event_bus.on(MyEvent, (MyEvent event) =>
-  updateRecords(event));
+    updateRecords(event));
   new Reporter();
 
   print("main done");

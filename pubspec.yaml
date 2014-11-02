@@ -12,11 +12,14 @@ dependencies:
   mongo_dart: ">=0.1.44 <0.2.0"
   redstone: any
   shelf_static: ">=0.2.1 <0.3.0"
+  paper_elements: any
 
 transformers:
 - polymer:
     entry_points:
     - web/ort_event_main.html
+    - web/racers.html
+    - web/ort.html
 
 dev_dependencies:
   unittest: any

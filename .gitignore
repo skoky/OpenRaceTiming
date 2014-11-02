@@ -1,6 +1,9 @@
+packages/*
 */packages/*
+*/packages
 .idea/*
 *.iml
+pubspec.lock
 */pubspec.lock
 .buildlog
 *~
