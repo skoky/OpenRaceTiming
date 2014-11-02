@@ -43,6 +43,7 @@ class AppElement extends PolymerElement {
       grid.setup(dataProvider: data, columns: columns, gridOptions: gridOptions).then((_) {
         grid.setSelectionModel = new CellSelectionModel();
         grid.onBwuAddNewRow.listen(addnewRowHandler);
+        grid.onBwuSelectedRowsChanged.listen(rowChangedHandler);
       });
 
     } on NoSuchMethodError catch (e) {
@@ -72,7 +73,14 @@ class AppElement extends PolymerElement {
     data.items.add(item);
     grid.updateRowCount();
     grid.render();
+    print(e.item);
   }
+
+  void rowChangedHandler(SelectedRowsChanged e) {
+    print("row changed"+e.rows.toString());
+
+  }
+
 }
 
 
