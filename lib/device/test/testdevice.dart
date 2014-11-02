@@ -25,5 +25,10 @@ class TestDevice {
         postEvent();
         });
   }
+
+
+  String getName() {
+    return "test device handler for development only";
+  }
 }
 

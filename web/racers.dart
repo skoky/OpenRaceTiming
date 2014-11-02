@@ -10,13 +10,13 @@ import 'dart:convert';
 import 'dart:async';
 
 MapDataItemProvider data = new MapDataItemProvider();
+BwuDatagrid grid;
 
 
 @CustomTag('app-element')
 class AppElement extends PolymerElement {
   AppElement.created() : super.created();
 
-  BwuDatagrid grid;
   List<Column> columns = [
       new Column(id: 'racerName', name: 'Racers name', field: 'racerName', editor: new TextEditor()),
       new Column(id: 'transponderId', name: 'Transponder ID', field: 'transponderId', editor: new TextEditor(), width: 80),
@@ -112,6 +112,7 @@ class Connector {
     setStatus(jsonString);
     List parsedList = JSON.decode(jsonString);
     data.items.add(new MapDataItem(parsedList));
+    grid.invalidate();
   }
 
   void setStatus(String status) {

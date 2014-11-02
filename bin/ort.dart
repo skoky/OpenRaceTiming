@@ -4,13 +4,11 @@ import 'package:http_server/http_server.dart' show VirtualDirectory;
 import 'package:event_commander/event_commander.dart';
 
 import 'package:redstone/server.dart' as app;
-import 'package:di/di.dart';
-import 'package:mongo_dart/mongo_dart.dart';
 
 @app.Install()
 import 'package:OpenRaceTiming/ort_service.dart';
 import 'package:OpenRaceTiming/reporter/reporter.dart';
-import 'package:OpenRaceTiming/device/test/testdevice.dart';
+import 'package:OpenRaceTiming/device/device.dart';
 import 'package:OpenRaceTiming/calculator/testcalculator.dart';
 import 'package:OpenRaceTiming/bus.dart';
 import 'package:OpenRaceTiming/storage/storage.dart';
@@ -36,7 +34,7 @@ void main() {
     ..allowDirectoryListing = true;
 
   TestCalculator test_calculator = new TestCalculator(event_bus);
-  TestDevice test_device = new TestDevice(event_bus);
+  new DeviceConnector(event_bus);
   Storage storage = new Storage(event_bus);
 
   event_bus.on(MyEvent, (MyEvent event) =>

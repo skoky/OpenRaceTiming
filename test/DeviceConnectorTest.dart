@@ -2,5 +2,10 @@ import 'package:unittest/unittest.dart';
 import 'package:OpenRaceTiming/device/device.dart';
 
 main() {
-  test('DeviceConnectorInit', () => new DeviceConnector());
+
+  test('DeviceInit',(){
+    expect(new DeviceConnector(null).modules.isEmpty, false);  // TODO does not work!
+  });
+
+
 }
