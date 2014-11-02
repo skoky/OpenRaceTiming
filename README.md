@@ -3,7 +3,9 @@ Open Race Timing software
 
 **** WORK IN PROGRESS ***
 
-This will be an universal+modular and open race timing software. Why should be all race timing softwares tightly coupled to one or few sports only? Why should be more ambitious timing solution complex? Why are all working timing softwares closed-source? How can public make sure that timing is calculated properly if it's sources are not public?
+This will be an universal+modular and open race timing software. Why should be all race timing softwares tightly coupled
+to one or few sports only? Why should be more ambitious timing solution complex? Why are all working timing softwares
+closed-source? How can public make sure that timing is calculated properly if it's sources are not public?
 
 We are trying to answer these questions by modular open-source timing software. Interested? Join us. All kind of experiences welcome!
 
@@ -67,5 +69,55 @@ starting point for discussion. Join us and review screen design to cover require
 ![Open Race Timing modules](https://raw.githubusercontent.com/skoky/OpenRaceTiming/master/doc/mockups.png)
 
 All screens are based on tables. These should be very flexible to make sure users comfort while presenting data.
+
+
+## Why Dart?
+
+Why not? Dart seems to be forward thinking open language with great ideas. It also support what we need:
+`"...platform for building apps that run on the web or on servers...`. It also runs on almost-embedded devices like
+Raspberry Pi. Dart will be also supported on Google cloud soon.
+
+### What is missing in Dart
+
+* dependencies are very hard to maintain. These seems to be working in specific directories like `web`, `bin` etc. Having
+more flexible structure with dependencies to external packages is difficult
+* reflection i.e. dynamic modules loading is key requirement for modular system. We hope Dart team will extend this soon
+see [Dart Mirrors](https://www.dartlang.org/articles/reflection-with-mirrors/)
+* Complex full featured IDE. DartEditor is like great start but definitely not full-featured IDE. It does not support
+integration with versioning system like Git/Github or others. Idea Dart plugin has full IDE background, but is still bit
+incomplete with the language support. The `Chrome Dev Editor` seems to be far from useful - it supports Dart web apps
+only.
+
+## Possible installations
+
+We keep in mind the future structure of the installed app. We believe that having flexible app the installation structure
+ must be considered from beginning. There are several standard installation structures in the world
+
+* Single PC installation - all on one PC, all starts on one click. Useful for small clubs, hobby installations
+* Chrome OS / browser installations - we recognize importance of simple browser based OS like Chrome OS or Firefox. This
+  might be interesting for small clubs in the future or for an individuals.
+* client - server installations - server and client on separated PC. Server accessible from outside, possibly with mobiles.
+Serve is running all the time, clients may be restarted or reconnected if needed. Useful for small races or larger clubs.
+* large championship installation - having reliable servers / clustered or in cloud. Multiple secured connection to
+timing device. Several time keepers workstations with reliable connection. Very massive connection to server from
+ mobile devices or external presenters like scoreboards. Useful for large events.
+
+![Open Race Timing installations](https://raw.githubusercontent.com/skoky/OpenRaceTiming/master/doc/client-server.png)
+
+
+## How it works inside - application architecture
+
+This chapter is outlining ideas we found useful while developing with Dart lang. There are very useful frameworks available
+for Dart already.
+
+* Message bus - is used for module-to-module communication flexible way
+* Redstone Dart - manages mapping from servers URL to Dart components built as Restone services
+* Angulart Dart - works on client side as the MVC pattern
+* Polymer Dart - is used for components reusing like tables etc
+
+![Open Race Timing architecture](https://raw.githubusercontent.com/skoky/OpenRaceTiming/master/doc/ORTarch.png)
+
+
+
 
 
