@@ -10,136 +10,117 @@ import 'dart:convert';
 import 'dart:async';
 
 
-
-
 @CustomTag('app-element')
 class AppElement extends PolymerElement {
-    AppElement.created() : super.created();
+  AppElement.created() : super.created();
 
-    
-    BwuDatagrid grid;
-    List<Column> columns = [
-      new Column(id: 'id', name: 'Passing ID', field: 'passingId',editor: new TextEditor()),
-      new Column(id: 'racerName', name: 'Racer Name', field: 'racerName',editor: new TextEditor(), width: 80),
-      new Column(id: 'laps', name: 'Laps', field: 'laps',editor: new TextEditor()),
-    ];
 
-    var gridOptions = new GridOptions(
-        editable: false,
-        enableAddRow: true,
-        enableCellNavigation: true,
-        asyncEditorLoading: false,
-        autoEdit: false
-    );
+  BwuDatagrid grid;
+  List<Column> columns = [
+      new Column(id: 'id', name: 'Passing ID', field: 'passingId', editor: new TextEditor()),
+      new Column(id: 'racerName', name: 'Racer Name', field: 'racerName', editor: new TextEditor(), width: 80),
+      new Column(id: 'laps', name: 'Laps', field: 'laps', editor: new TextEditor()),
+  ];
 
-    MapDataItemProvider data = new MapDataItemProvider();
+  var gridOptions = new GridOptions(
+      editable: false,
+      enableAddRow: true,
+      enableCellNavigation: true,
+      asyncEditorLoading: false,
+      autoEdit: false
+  );
 
-    @override
-    void attached() {
-      super.attached();
+  MapDataItemProvider data = new MapDataItemProvider();
 
-      try {
-        grid = $['myGrid'];
+  @override
+  void attached() {
+    super.attached();
 
-        
-        for (var i = 0; i < 10; i++) {
-          int x = i^2;
-          data.items.add(new MapDataItem({
+    try {
+      grid = $['myGrid'];
+
+
+      for (var i = 0; i < 10; i++) {
+        int x = i ^ 2;
+        data.items.add(new MapDataItem({
             'passingId': '${i}',
             'racerName': 'Racer ${i}',
             'laps': '${x}'
-          }));
-        }
-        
-        new Connector().connect();
-        
-        grid.setup(dataProvider: data, columns: columns, gridOptions: gridOptions).then((_) {
-          grid.setSelectionModel = new CellSelectionModel();
-          grid.onBwuAddNewRow.listen(addnewRowHandler);
-        });
-
-      } on NoSuchMethodError catch (e) {
-        print('$e\n\n${e.stackTrace}');
-      }  on RangeError catch (e) {
-        print('$e\n\n${e.stackTrace}');
-      } on TypeError catch(e) {
-        print('$e\n\n${e.stackTrace}');
-      } catch(e) {
-        print('$e');
+        }));
       }
-    }
-    
-    void enableAutoEdit(dom.MouseEvent e, dynamic details, dom.HtmlElement target) {
-      grid.setGridOptions = new GridOptions.unitialized()..autoEdit = true;
-    }
-    void disableAutoEdit(dom.MouseEvent e, dynamic details, dom.HtmlElement target) {
-      grid.setGridOptions = new GridOptions.unitialized()..autoEdit = false;
-    }
 
-    void addnewRowHandler(AddNewRow e) {
-      var item = e.item;
-      grid.invalidateRow(data.items.length);
-      data.items.add(item);
-      grid.updateRowCount();
-      grid.render();
+      new Connector().connect();
+
+      grid.setup(dataProvider: data, columns: columns, gridOptions: gridOptions).then((_) {
+        grid.setSelectionModel = new CellSelectionModel();
+        grid.onBwuAddNewRow.listen(addnewRowHandler);
+      });
+
+    } on NoSuchMethodError catch (e) {
+      print('$e\n\n${e.stackTrace}');
+    } on RangeError catch (e) {
+      print('$e\n\n${e.stackTrace}');
+    } on TypeError catch (e) {
+      print('$e\n\n${e.stackTrace}');
+    } catch (e) {
+      print('$e');
     }
+  }
+
+  void enableAutoEdit(dom.MouseEvent e, dynamic details, dom.HtmlElement target) {
+    grid.setGridOptions = new GridOptions.unitialized()
+      ..autoEdit = true;
+  }
+
+  void disableAutoEdit(dom.MouseEvent e, dynamic details, dom.HtmlElement target) {
+    grid.setGridOptions = new GridOptions.unitialized()
+      ..autoEdit = false;
+  }
+
+  void addnewRowHandler(AddNewRow e) {
+    var item = e.item;
+    grid.invalidateRow(data.items.length);
+    data.items.add(item);
+    grid.updateRowCount();
+    grid.render();
+  }
 }
 
 
 class Connector {
-  
+
   static const Duration RECONNECT_DELAY = const Duration(milliseconds: 500);
-  WebSocket webSocket;
   DivElement statusElement = querySelector('#status');
+
+  void setStatus(String status) {
+    statusElement.innerHtml = status;
+  }
+
 
   Connector() {
     setStatus('constructor2');
   }
-    bool connectPending = false;
-    void connect() {
-       connectPending = false;
-       setStatus("connecting...");
-       webSocket = new WebSocket('ws://127.0.0.1:8082/records');
-       webSocket.onOpen.first.then((_) {
-         setStatus('before connected');
-         onConnected();
-         webSocket.onClose.first.then((_) {
-           setStatus('no connection');
-           onDisconnected();
-         });
-       });
-       webSocket.onError.first.then((_) {
-         setStatus("Failed to connect to ${webSocket.url}. "
-               "Run bin/server.dart and try again.");
-         onDisconnected();
-       });
-     }
 
-     void onConnected() {
-       setStatus('connected');
-       webSocket.onMessage.listen((e) {
-         handleMessage(e.data);
-       });
-     }
+  bool connectPending = false;
 
-     void onDisconnected() {
-       setStatus('disconnected');
-       if (connectPending) return;
-       connectPending = true;
-       setStatus('Disconnected. Start \'bin/server.dart\' to continue.');
-       new Timer(RECONNECT_DELAY, connect);
-     }
+  void connect() {
+    connectPending = false;
+    setStatus("connecting...");
 
-     void setStatus(String status) {
-       statusElement.innerHtml = status;
-     }
-     
-     void handleMessage(data) {
-        setStatus('data received');
-        var json = JSON.decode(data);
-        setStatus("Json received:${json}");
-      }
+    var url = "http://127.0.0.1:8082/record";
+    var request = HttpRequest.getString(url).then(onDataLoaded);
 
-  
+  }
+
+
+  void handleMessage(data) {
+    setStatus('data received');
+    var json = JSON.decode(data);
+    setStatus("Json received:${json}");
+  }
+
+  void onDataLoaded(AddNewRow r) {
+    setStatus(r.toString());
+  }
 
 }
