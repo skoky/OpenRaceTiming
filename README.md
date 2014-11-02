@@ -87,6 +87,16 @@ see [Dart Mirrors](https://www.dartlang.org/articles/reflection-with-mirrors/)
 integration with versioning system like Git/Github or others. Idea Dart plugin has full IDE background, but is still bit
 incomplete with the language support. The `Chrome Dev Editor` seems to be far from useful - it supports Dart web apps
 only.
+* runtime manipulation is not supported by Dart, but might be useful later on
+
+### Another alternative
+
+If you want to get real touch to Dart difference in 5 minutes, try this page [https://www.dartlang.org/docs/synonyms]
+
+* Java/Java8 + GWT - Java is bit orphant and not well accepted by browsers. Java 8 seems to be not well accepted by internet clouds yet. GWT seems to be dying slow.
+* Python - very flexible and useful language. Great for server side or scripting, but not for web browser based apps
+* JavaScript/Node.js + HTML5 - seems to be very popular combination but having large system developed without static typing \
+maybe difficult. Also Node.js does not seems to be suitable for large scape championship installations communicating to timing HW.
 
 ## Possible installations
 
