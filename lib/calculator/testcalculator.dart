@@ -12,7 +12,7 @@ class TestCalculator {
   }
   
   void processEvent(MyEvent event) {
-    print("Received:"+event.selector);
+    print("Calculating:"+event.selector);
     if (!event.selector.startsWith("device/TestDevice/"))
       return; // not interested in
     

@@ -21,11 +21,11 @@ Storage(EventBus bus) {
 
    
 void processEvent(MyEvent event) {
-  print("Received:"+event.selector);
+  print("Storing:"+event.selector);
       
-  if (event.selector.startsWith("device/TestDevice/Passings")) {
+  if (event.selector.startsWith("device/")) {
     store(event);
-  } else if (event.selector.startsWith("calculator/TestCalculator/update")) {
+  } else if (event.selector.startsWith("calculator/")) {
       String id = JSON.decode(event.jsonData)['id'];      
     update('id',id,event);
   }

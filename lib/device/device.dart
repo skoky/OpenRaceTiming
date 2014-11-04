@@ -6,14 +6,16 @@ import 'dart:convert';
 import 'dart:mirrors';
 import 'test/testdevice.dart';
 import 'package:event_commander/event_commander.dart';
+import 'tranx/TranXDeviceSimulator.dart';
 
 class DeviceConnector {
 
 
   List<String> modules;
-  EventBus event_bus;
+  EventBus bus;
+  var device; // active device
 
-  DeviceConnector(this.event_bus) {
+  DeviceConnector(EventBus bus) {
     print("Path:" + Platform.script.resolve('../lib/device/config.yaml').toFilePath());
     String config = new File("../lib/device/config.yaml").readAsStringSync();
     YamlMap m = loadYaml(config);
@@ -30,8 +32,8 @@ class DeviceConnector {
     // var tc = im.reflectee;
     // print("Device handler:"+tc.getName());
 
-    TestDevice test_device = new TestDevice(event_bus);
-
+//    var device = new TestDevice(bus);
+     device = new TranX3Simulator(bus);
 
   }
 

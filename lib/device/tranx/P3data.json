@@ -6,7 +6,7 @@
     {"transponder":"95485B"}
   ],
   "sequence": [
-    {"delay": 1400, "unit":"ms"},
+    {"delay": 140, "unit":"ms"},
     {
       "passingNumber": "",
       "transponder": "",
@@ -29,8 +29,8 @@
       "passingNumber": "",
       "transponder": "",
       "RTC_Time": "0",
-      "strength": "1C",
-      "hits": "5",
+      "strength": "24",
+      "hits": "1B",
       "flags": "1",
       "recordType": "Passing",
       "TOR": "1",
