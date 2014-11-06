@@ -11,8 +11,10 @@ dependencies:
   http_server: any
   mongo_dart: ">=0.1.44 <0.2.0"
   redstone: any
+  redstone_web_socket: ">=0.0.2 <0.1.0"
   shelf_static: ">=0.2.1 <0.3.0"
   paper_elements: any
+
 
 transformers:
 - polymer:

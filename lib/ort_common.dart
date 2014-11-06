@@ -16,10 +16,7 @@ class OrtEvent extends Event {
 
 abstract class OrtModule extends Module {
 
-  // communication bus
-  EventBus bus;
-
-  start();
+  start(EventBus bus);
   stop();
 
 }

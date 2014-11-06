@@ -29,5 +29,14 @@ class OrtService {
 
     return jsonData;
   }
+
+  @app.Route("/modules/all", methods: const [app.GET])
+  getAllModules() {
+    Map mapResponse = new Map();
+
+    String jsonData = JSON.encode(mapResponse);
+
+    return jsonData;
+  }
   
 }

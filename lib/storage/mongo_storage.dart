@@ -12,14 +12,15 @@ import 'package:OpenRaceTiming/ort_common.dart';
 
 class MongoStorage extends Storage {
 
-  EventBus bus;
+  EventBus _bus;
 
-  start() {
+  start(EventBus bus) {
+    _bus=bus;
     bus.on(OrtEvent, (OrtEvent event) => processEvent(event));
   }
 
   stop() {
-    bus.clearAllListeners();
+    _bus.clearAllListeners();
   }
 
   void processEvent(OrtEvent event) {

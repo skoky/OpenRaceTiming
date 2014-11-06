@@ -13,16 +13,16 @@ class TestCalculator {
   
   void processEvent(OrtEvent event) {
     print("Calculating:"+event.selector);
-    if (!event.selector.startsWith("device/TestDevice/"))
+    if (!event.selector.startsWith("device/TranX3/"))
       return; // not interested in
     
-    if (event.selector.startsWith("device/TestDevice/Passings")) {
+    if (event.selector.startsWith("device/TranX3/Passings")) {
       Map data = JSON.decode(event.jsonData);
-      print("Reseved passing for id:"+data["passingId"]);
+      print("Reseved passing for id:"+data["transponder"]);
       
       DataRecord newR=null;
       for(DataRecord r in results) {
-        if (r.id == data["passingId"]) {
+        if (r.id == data["transponder"]) {
           r.laps++;
           newR = r;
           break;
@@ -30,13 +30,13 @@ class TestCalculator {
       }
       if (newR == null) {
         newR = new DataRecord();
-        newR.id = data["passingId"];
+        newR.id = data["transponder"];
         newR.laps=1;
         results.add(newR);          
       }
       var json = newR.json();
       print("Calculator sending event:"+json);
-      event_bus.signal(new OrtEvent("calculator/TestCalculator/update", json));
+      event_bus.signal(new OrtEvent("calculator/single/update", json));
       
     }
     

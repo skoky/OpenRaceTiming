@@ -103,6 +103,8 @@ class Connector {
 
   bool connectPending = false;
 
+  WebSocket webSocket;
+
   void connect() {
     connectPending = false;
     setStatus("connecting...");
@@ -110,6 +112,22 @@ class Connector {
     var url = "http://127.0.0.1:8082/record";
     var request = HttpRequest.getString(url).then(onDataLoaded);
 
+    connectPending = false;
+    setStatus("connecting...");
+    webSocket = new WebSocket('ws://127.0.0.1:8083/ws');
+    webSocket.onOpen.first.then((_) {
+      setStatus('before connected');
+      onConnected();
+      webSocket.onClose.first.then((_) {
+        setStatus('no connection');
+        onDisconnected();
+      });
+    });
+    webSocket.onError.first.then((_) {
+      setStatus("Failed to connect to ${webSocket.url}. "
+      "Run bin/server.dart and try again.");
+      onDisconnected();
+    });
   }
 
 
@@ -121,6 +139,21 @@ class Connector {
 
   void onDataLoaded(AddNewRow r) {
     setStatus(r.toString());
+  }
+
+  void onConnected() {
+    setStatus('connected');
+    webSocket.onMessage.listen((e) {
+      handleMessage(e.data);
+    });
+  }
+
+  void onDisconnected() {
+    setStatus('disconnected');
+    if (connectPending) return;
+    connectPending = true;
+    setStatus('Disconnected. Start \'bin/server.dart\' to continue.');
+    new Timer(RECONNECT_DELAY, connect);
   }
 
 }
