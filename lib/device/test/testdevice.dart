@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:math';
 import 'dart:convert';
 import 'package:event_commander/event_commander.dart';
-import 'package:OpenRaceTiming/bus.dart';
+import 'package:OpenRaceTiming/ort_common.dart';
 
 class TestDevice {
 
@@ -16,7 +16,7 @@ class TestDevice {
     var now = new DateTime.now().toString();
     var id  = ids.nextInt(10);
     String json = '{"passingId":"$id","passingNumber":"$passingNumber","time":"$now"}';  
-    event_bus.signal(new MyEvent('device/TestDevice/Passings', json));
+    event_bus.signal(new OrtEvent('device/TestDevice/Passings', json));
 
   }
 

@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:event_commander/event_commander.dart';
-import 'package:OpenRaceTiming/bus.dart';
+import 'package:OpenRaceTiming/ort_common.dart';
 
 class TestCalculator {
 
@@ -8,10 +8,10 @@ class TestCalculator {
   EventBus event_bus;
 
   TestCalculator(this.event_bus) {
-    event_bus.on(MyEvent, (MyEvent event) => processEvent(event));
+    event_bus.on(OrtEvent, (OrtEvent event) => processEvent(event));
   }
   
-  void processEvent(MyEvent event) {
+  void processEvent(OrtEvent event) {
     print("Calculating:"+event.selector);
     if (!event.selector.startsWith("device/TestDevice/"))
       return; // not interested in
@@ -36,7 +36,7 @@ class TestCalculator {
       }
       var json = newR.json();
       print("Calculator sending event:"+json);
-      event_bus.signal(new MyEvent("calculator/TestCalculator/update", json));  
+      event_bus.signal(new OrtEvent("calculator/TestCalculator/update", json));
       
     }
     

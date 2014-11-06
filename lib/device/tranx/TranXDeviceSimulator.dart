@@ -8,14 +8,10 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'package:event_commander/event_commander.dart';
-import 'package:OpenRaceTiming/bus.dart';
+import 'package:OpenRaceTiming/ort_common.dart';
 import 'dart:math';
 
 class TranX3Simulator {
-
-  proc(key, value) {
-    print(key+value);
-  }
 
   EventBus bus;
   var data;
@@ -46,7 +42,7 @@ class TranX3Simulator {
       nextStep['hits']=r.nextInt(100);
       nextStep['strength']=r.nextInt(100);
       nextStep['decoderId']=decoderId;
-      bus.signal(new MyEvent('device/TranX3/Passings', passing));
+      bus.signal(new OrtEvent('device/TranX3/Passings', passing));
     } else {
       print("Invalid:"+nextStep["passing"]);
     }
