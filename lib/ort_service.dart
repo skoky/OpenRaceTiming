@@ -47,14 +47,18 @@ class OrtService {
     return jsonData;
   }
 
-
+  // invoke like this:
+  //  curl http://localhost:8082/event
   @app.Route("/event", methods: const[app.GET])
   @Encode()
   Future<List<String>> listEvents(@app.Attr() MongoDb dbConn) {
     return dbConn.collection("event").find().toList();
   }
 
-  // invoke:
+  // invoke like this:
+  // curl -X POST -d @event.txt http://localhost:8082/event --header "Content-Type:application/json"
+  // event.txt file:
+  // {"name":"test curl" }
   @app.Route("/event", methods: const[app.POST])
   void addEvent(@app.Attr() MongoDb dbConn, @Decode() Event event) {
     dbConn.insert("event",event);
