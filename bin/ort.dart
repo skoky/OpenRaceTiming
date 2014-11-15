@@ -10,6 +10,8 @@ import 'package:OpenRaceTiming/ort_common.dart';
 import 'package:OpenRaceTiming/storage/mongo_storage.dart';
 import 'package:OpenRaceTiming/presenter/presenter.dart';
 import 'package:shelf_static/shelf_static.dart';
+import 'package:redstone_mapper/plugin.dart';
+import 'package:redstone_mapper_mongo/manager.dart';
 
 
 @app.Install()
@@ -35,6 +37,8 @@ void main() {
 
   app.addPlugin(getWebSocketPlugin());
   app.addModule(new PresenterWs());
+  var dbManager = new MongoDbManager("mongodb://localhost/ort", poolSize: 3);
+  app.addPlugin(getMapperPlugin(dbManager));
 
   // TODO change to module
   TestCalculator calculator = new TestCalculator(_bus);
