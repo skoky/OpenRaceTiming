@@ -87,33 +87,45 @@
             padding: 15px;
             border: 1px solid #dedede;
         }
+        .toolbar {
+            position:  relative;
+            float: right;
+            bottom: 10px;
+        }
 
     </style>
 </head>
 
 <body unresolved>
 
-<div class="heading" onclick="document.querySelector('#collapse1').toggle();">Prague marathon 12.12.2014</div>
+<div class="heading" onclick="document.querySelector('#collapse1').toggle();">Prague marathon (12.12.2014)
+<div class="toolbar">
+    <paper-icon-button icon="menu"></paper-icon-button>
+    <paper-icon-button icon="arrow-forward"></paper-icon-button>
+</div>
+</div>
 <core-collapse id="collapse1" >
     <div class="content">
         <div>Upcoming event with 120 runners registered already. Event not started yet</div>
         <br/>
         <div>
-            <paper-button raised class="colored" on>Edit event</paper-button>
-            <paper-button raised class="colored" on>Delete event</paper-button>
             <paper-button raised class="colored" on>Edit racers</paper-button>
         </div>
     </div>
 </core-collapse>
 
 
-<div class="heading-gone" onclick="document.querySelector('#collapse2').toggle();">Boston marathon 1.5.2014</div>
+<div class="heading-gone" onclick="document.querySelector('#collapse2').toggle();">Boston marathon 1.5.2014
+    <div class="toolbar">
+        <paper-icon-button icon="menu"></paper-icon-button>
+        <paper-icon-button icon="arrow-forward"></paper-icon-button>
+    </div>
+</div>
 <core-collapse id="collapse2">
     <div class="content">
         <div>Boston marathon already passed. See results <a href="http://www.baa.org/" target="_blank">BAA</a></div>
         <br>
         <div>
-            <paper-button raised class="colored" on>Show results</paper-button>
             <paper-button raised class="colored" on>Delete event</paper-button>
             <paper-button raised class="colored" on>Pulish results</paper-button>
         </div>
