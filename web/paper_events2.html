@@ -11,6 +11,7 @@
     <link rel="import" href="packages/paper_elements/paper_button.html">
     <link rel="import" href="packages/paper_elements/paper_icon_button.html">
     <link rel="import" href="packages/core_elements/core_collapse.html">
+    <link href="packages/paper_elements/paper_fab.html" rel="import">
 
     <style shim-shadowdom>
         body {
@@ -92,11 +93,18 @@
             float: right;
             bottom: 10px;
         }
+        .button_right {
+            position: relative;
+            float: right;
+            top: 50px;
+        }
+
 
     </style>
 </head>
 
 <body unresolved>
+
 
 <div class="heading" onclick="document.querySelector('#collapse1').toggle();">Prague marathon (12.12.2014)
 <div class="toolbar">
@@ -113,7 +121,6 @@
         </div>
     </div>
 </core-collapse>
-
 
 <div class="heading-gone" onclick="document.querySelector('#collapse2').toggle();">Boston marathon 1.5.2014
     <div class="toolbar">
@@ -132,10 +139,56 @@
     </div>
 </core-collapse>
 
+<div class="heading-gone" onclick="document.querySelector('#collapse3').toggle();">Boston marathon 1.5.2013
+    <div class="toolbar">
+        <paper-icon-button icon="menu"></paper-icon-button>
+        <paper-icon-button icon="arrow-forward"></paper-icon-button>
+    </div>
+</div>
+<core-collapse id="collapse3">
+    <div class="content">
+        <div>Boston marathon already passed. See results <a href="http://www.baa.org/" target="_blank">BAA</a></div>
+        <br>
+        <div>
+            <paper-button raised class="colored" on>Delete event</paper-button>
+            <paper-button raised class="colored" on>Publish results</paper-button>
+        </div>
+    </div>
+</core-collapse>
 
-<br/><br/>
-
-<paper-button raised class="colored" on>Add new event</paper-button>
+<div class="heading-gone" onclick="document.querySelector('#collapse4').toggle();">Boston marathon 1.5.2012
+    <div class="toolbar">
+        <paper-icon-button icon="menu"></paper-icon-button>
+        <paper-icon-button icon="arrow-forward"></paper-icon-button>
+    </div>
+</div>
+<core-collapse id="collapse4">
+    <div class="content">
+        <div>Boston marathon already passed. See results <a href="http://www.baa.org/" target="_blank">BAA</a></div>
+        <br>
+        <div>
+            <paper-button raised class="colored" on>Delete event</paper-button>
+            <paper-button raised class="colored" on>Publish results</paper-button>
+        </div>
+    </div>
+</core-collapse>
+<div class="heading-gone" onclick="document.querySelector('#collapse5').toggle();">Boston marathon 1.5.2011
+    <div class="toolbar">
+        <paper-icon-button icon="menu"></paper-icon-button>
+        <paper-icon-button icon="arrow-forward"></paper-icon-button>
+    </div>
+</div>
+<core-collapse id="collapse5">
+    <div class="content">
+        <div>Boston marathon already passed. See results <a href="http://www.baa.org/" target="_blank">BAA</a></div>
+        <br>
+        <div>
+            <paper-button raised class="colored" on>Delete event</paper-button>
+            <paper-button raised class="colored" on>Publish results</paper-button>
+        </div>
+    </div>
+</core-collapse>
+<paper-fab icon="add" class="button_right"></paper-fab>
 
 
 <script type="application/dart">export 'package:polymer/init.dart';</script>

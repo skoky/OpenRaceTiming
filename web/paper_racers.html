@@ -1,23 +1,77 @@
 <!DOCTYPE html>
 
-<html>
-  <head>
+<head>
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'>
-    <title>Console</title>
 
-    <script src="packages/web_components/platform.js"></script>
-    <link rel='import' href='racers_table.html'>
+    <link rel="import" href="packages/paper_elements/roboto.html">
+    <link rel="import" href="packages/paper_elements/paper_input.html">
+    <link href="packages/paper_elements/paper_fab.html" rel="import">
+    <style shim-shadowdom>
 
-    <link rel='stylesheet' href='examples.css'>
-  </head>
+        body {
+            font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
+            margin: 0;
+            padding: 24px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            -webkit-touch-callout: none;
+        }
 
-  <body>
-    <app-element></app-element>
-    <script type='application/dart'>export 'package:polymer/init.dart';</script>
-    Console:<div id="status">init</div>
-    <br/>
+        paper-input.narrow {
+            width: 150px;
 
-  </body>
-</html>
+        }
+
+        paper-input {
+            display: inline-block !important;
+        }
+
+        paper-fab.green {
+            background: #259b24;
+        }
+
+
+    </style>
+
+</head>
+
+<body>
+
+<section>
+
+    <div style="margin-top: 20px; border: solid #d3d3d3; padding: 10px">
+        <paper-input label="Name"></paper-input>
+        <paper-input label="Age" class="narrow" type="number"></paper-input>
+        <paper-input label="Category" class="narrow" ></paper-input>
+        <paper-fab mini icon="search" class="green"></paper-fab>
+        <paper-fab mini icon="add" class="green"></paper-fab>
+
+    </div>
+    <div style="margin-top: 20px;">
+        <paper-input label="Name" value="Peter Pan"></paper-input>
+        <paper-input label="Age" class="narrow" type="number" value="12"></paper-input>
+        <paper-input label="Category" class="narrow" value="beginner"></paper-input>
+
+    </div>
+    <div style="margin-top: 20px;">
+        <paper-input label="Name"></paper-input>
+        <paper-input label="Age" class="narrow" type="number"></paper-input>
+        <paper-input label="Category" class="narrow" ></paper-input>
+
+    </div>
+    <div style="margin-top: 20px;">
+        <paper-input label="Name"></paper-input>
+        <paper-input label="Age" class="narrow" type="number"></paper-input>
+        <paper-input label="Category" class="narrow" ></paper-input>
+
+    </div>
+
+
+</section>
+<script type="application/dart" src="paper_racers.dart"></script>
+</body>

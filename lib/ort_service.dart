@@ -7,6 +7,8 @@ import 'package:redstone_mapper/mapper.dart';
 import 'package:redstone_mapper/plugin.dart';
 import 'package:redstone_mapper_mongo/manager.dart';
 import 'package:redstone_mapper_mongo/metadata.dart';
+import 'package:mongo_dart/mongo_dart.dart';
+import 'package:mongo_dart_query/mongo_dart_query.dart';
 import 'dart:async';
 
 @app.Group('/')
@@ -48,19 +50,29 @@ class OrtService {
   }
 
   // invoke like this:
-  //  curl http://localhost:8082/event
-  @app.Route("/event", methods: const[app.GET])
+  //  curl http://localhost:8082/get/event
+  @app.Route("/get/:entity", methods: const[app.GET])
   @Encode()
-  Future<List<String>> listEvents(@app.Attr() MongoDb dbConn) {
-    return dbConn.collection("event").find().toList();
+  Future<List<String>> listEvents(@app.Attr() MongoDb dbConn, String entity) {
+    return dbConn.collection(entity).find().toList();
   }
+
+
+  // invoke like this:
+  //  curl http://localhost:8082/get/event
+  @app.Route("/get/:entity/:id", methods: const[app.GET])
+  @Encode()
+  Future<List<String>> listEventsById(@app.Attr() MongoDb dbConn, String entity, ObjectId id) {
+    return dbConn.collection(entity).find(where.id(id)).toList();
+  }
+
 
   // invoke like this:
   // curl -X POST -d @event.txt http://localhost:8082/event --header "Content-Type:application/json"
   // event.txt file:
   // {"name":"test curl" }
-  @app.Route("/event", methods: const[app.POST])
-  void addEvent(@app.Attr() MongoDb dbConn, @Decode() Event event) {
+  @app.Route("/store/:entity", methods: const[app.POST])
+  void addEvent(@app.Attr() MongoDb dbConn, @Decode() Event event,String entity) {
     dbConn.insert("event",event);
   }
 
