@@ -8,8 +8,10 @@
  */
 
 import 'dart:html';
+import 'dart:convert';
 import 'dart:math' as math;
 import 'package:polymer/polymer.dart';
+
 
 var strings = [
     "PARKOUR!",
@@ -22,7 +24,7 @@ final _random = new math.Random();
 
 _generateString(inLength) {
   var s = '';
-  for (var i=0; i<inLength; i++) {
+  for (var i = 0; i < inLength; i++) {
     s += new String.fromCharCode(_random.nextInt(26) + 97);
   }
   return s;
@@ -40,7 +42,7 @@ class ListTest extends PolymerElement {
   @observable String scrollToIdx = '0';
   @observable bool multi = false;
   @observable bool selectionEnabled = true;
-  @observable int count = 50000;
+  @observable int count = 0;
   @observable ObservableList data;
   @observable var selection;
 
@@ -48,6 +50,21 @@ class ListTest extends PolymerElement {
 
   @override ready() {
     this.initArrayFull();
+  }
+
+  downloadData() {
+    var request = HttpRequest.getString("http://localhost:8082/get/event").then(onDataLoaded);
+  }
+
+  void onDataLoaded(String responseText) {
+    List events = JSON.decode(responseText);
+    print(events);
+    data.clear();
+    events.forEach((event) =>
+      data.add(new TestItem(
+        id:1,
+        name: event["name"]
+      )));
   }
 
   generateData() {
@@ -115,10 +132,12 @@ class ListTest extends PolymerElement {
   }
 
   initArrayEmpty() {
+
     data = toObservable([]);
   }
 
   initArrayFull() {
+    downloadData();
     data = generateData();
   }
 
