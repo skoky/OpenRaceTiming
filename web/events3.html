@@ -12,7 +12,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <title>core-list-dart</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
+
     <link rel="import" href="packages/core_elements/core_list_dart.html">
+    <link rel="import" href="packages/paper_elements/roboto.html">
+    <link rel="import" href="packages/paper_elements/paper_input.html">
+    <link rel="import" href="packages/paper_elements/paper_checkbox.html">
+
 
     <style>
         html, body {
@@ -40,59 +45,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <polymer-element name="list-test" layout vertical>
     <template>
-        <style>
-            .item {
-                box-sizing: border-box;
-                height: 80px;
-                border-bottom: 1px solid #ddd;
-                padding: 4px;
-                cursor: default;
-                background-color: white;
-                overflow: hidden;
-            }
-
-            .selected {
-                background: silver;
-            }
-
-            .message {
-                padding-left: 77px;
-                line-height: 167%;
-                background-repeat: no-repeat;
-                background-position: 10px 10px;
-                background-size: 60px;
-            }
-
-            .from {
-                display: inline;
-                font-weight: bold;
-            }
-
-            .timestamp {
-                margin-left: 10px;
-                font-size: 12px;
-                opacity: 0.8;
-            }
-
-            .body {
-                font-size: 12px;
-            }
-
-            .spaced {
-                margin: 10px;
-            }
-
-            .selection-display {
-                background: lightgray;
-                padding: 0 5px;
-                margin: 0 5px;
-            }
-
-            .narrow {
-                width: 40px;
-            }
-
-        </style>
 
         <div class="spaced">
             <button on-tap="{{addRecord}}">Add row at index:</button>
@@ -132,8 +84,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     <div class="message" style="background-image: url(images/{{model.image}}.png);">
                         <span class="from">{{model.name}}</span>
                         <div class="subject">Row: {{index}}, Record ID: {{model.id}}</div>
-                        <input type="checkbox" checked="{{model.checked}}">
-                        <input type="number" value="{{model.value}}" class="narrow">
+                        <paper-checkbox class="blue" {{model.checked}}></paper-checkbox>
+                        <paper-input label="xxx" value="{{model.value}}"></paper-input>
                         <select selectedIndex="{{model.type}}"><option>a</option><option>b</option><option>c</option></select>
                         <span class="body">{{model.details}}</span>
                     </div>
