@@ -20,9 +20,11 @@ dependencies:
 transformers:
 - polymer:
     entry_points:
-    - web/ort_event_main.html
-    - web/racers.html
     - web/ort.html
+    - web/events3.html
+    - web/paper_events.html
+    - web/paper_events2.html
+    - web/paper_racers.html
 
 dev_dependencies:
   unittest: any
