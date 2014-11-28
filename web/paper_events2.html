@@ -5,12 +5,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
-    <link href="packages/paper_elements/roboto.html" rel="import">
     <link href="packages/core_elements/core_icons.html" rel="import">
+    <link href="packages/paper_elements/roboto.html" rel="import">
     <link rel="import" href="packages/paper_elements/paper_button.html">
     <link rel="import" href="packages/paper_elements/paper_icon_button.html">
+    <link rel="import" href="packages/paper_elements/paper_input.html">
+    <link rel="import" href="packages/paper_elements/paper_checkbox.html">
     <link rel="import" href="packages/core_elements/core_collapse.html">
-    <link href="packages/paper_elements/paper_fab.html" rel="import">
+    <link rel="import" href="packages/paper_elements/paper_fab.html" >
+
 
     <style shim-shadowdom>
         body {
@@ -22,6 +25,12 @@
             -webkit-touch-callout: none;
         }
 
+        .stuff {
+            min-height: 60px;
+            background: red !important;
+            border-bottom: 1px solid black;
+        }
+
         section {
             padding: 20px 0;
         }
@@ -31,163 +40,144 @@
             font-size: 16px;
         }
 
-        paper-button.colored {
-            color: #4285f4;
-        }
 
-        paper-button[raised].colored {
-            background: #4285f4;
-            color: #fff;
-        }
-
-        paper-button.custom > core-icon {
-            margin-right: 4px;
-        }
-
-        paper-button.hover:hover {
-            background: #eee;
-        }
-
-        paper-button.blue-ripple::shadow #ripple {
-            color: #4285f4;
-        }
-
-
-        .heading {
-            padding: 10px 15px;
-            background-color: #51f353;
-            border: 1px solid #dedede;
-            border-top-left-radius: 5px;
-            border-top-right-radius: 5px;
-            font-size: 18px;
-            cursor: pointer;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            -webkit-tap-highlight-color: rgba(0,0,0,0);
-        }
-
-        .heading-gone {
-            padding: 10px 15px;
-            background-color: #c9c9c9;
-            border: 1px solid #dedede;
-            border-top-left-radius: 5px;
-            border-top-right-radius: 5px;
-            font-size: 18px;
-            cursor: pointer;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            -webkit-tap-highlight-color: rgba(0,0,0,0);
-        }
-
-        .content {
-            padding: 15px;
-            border: 1px solid #dedede;
-        }
-        .toolbar {
-            position:  relative;
-            float: right;
-            bottom: 10px;
-        }
         .button_right {
             position: relative;
             float: right;
             top: 50px;
         }
 
-
     </style>
 </head>
 
-<body unresolved>
+<body unresolved fit>
 
 
-<div class="heading" onclick="document.querySelector('#collapse1').toggle();">Prague marathon (12.12.2014)
-<div class="toolbar">
-    <paper-icon-button icon="menu"></paper-icon-button>
-    <paper-icon-button icon="arrow-forward"></paper-icon-button>
-</div>
-</div>
-<core-collapse id="collapse1" >
-    <div class="content">
-        <div>Upcoming event with 120 runners registered already. Event not started yet</div>
-        <br/>
-        <div>
-            <paper-button raised class="colored" on>Edit racers</paper-button>
-        </div>
-    </div>
-</core-collapse>
+<br/>
+Generated list:
+<br/>
 
-<div class="heading-gone" onclick="document.querySelector('#collapse2').toggle();">Boston marathon 1.5.2014
-    <div class="toolbar">
-        <paper-icon-button icon="menu"></paper-icon-button>
-        <paper-icon-button icon="arrow-forward"></paper-icon-button>
-    </div>
-</div>
-<core-collapse id="collapse2">
-    <div class="content">
-        <div>Boston marathon already passed. See results <a href="http://www.baa.org/" target="_blank">BAA</a></div>
-        <br>
-        <div>
-            <paper-button raised class="colored" on>Delete event</paper-button>
-            <paper-button raised class="colored" on>Publish results</paper-button>
-        </div>
-    </div>
-</core-collapse>
+<br/>
 
-<div class="heading-gone" onclick="document.querySelector('#collapse3').toggle();">Boston marathon 1.5.2013
-    <div class="toolbar">
-        <paper-icon-button icon="menu"></paper-icon-button>
-        <paper-icon-button icon="arrow-forward"></paper-icon-button>
-    </div>
-</div>
-<core-collapse id="collapse3">
-    <div class="content">
-        <div>Boston marathon already passed. See results <a href="http://www.baa.org/" target="_blank">BAA</a></div>
-        <br>
-        <div>
-            <paper-button raised class="colored" on>Delete event</paper-button>
-            <paper-button raised class="colored" on>Publish results</paper-button>
-        </div>
-    </div>
-</core-collapse>
-
-<div class="heading-gone" onclick="document.querySelector('#collapse4').toggle();">Boston marathon 1.5.2012
-    <div class="toolbar">
-        <paper-icon-button icon="menu"></paper-icon-button>
-        <paper-icon-button icon="arrow-forward"></paper-icon-button>
-    </div>
-</div>
-<core-collapse id="collapse4">
-    <div class="content">
-        <div>Boston marathon already passed. See results <a href="http://www.baa.org/" target="_blank">BAA</a></div>
-        <br>
-        <div>
-            <paper-button raised class="colored" on>Delete event</paper-button>
-            <paper-button raised class="colored" on>Publish results</paper-button>
-        </div>
-    </div>
-</core-collapse>
-<div class="heading-gone" onclick="document.querySelector('#collapse5').toggle();">Boston marathon 1.5.2011
-    <div class="toolbar">
-        <paper-icon-button icon="menu"></paper-icon-button>
-        <paper-icon-button icon="arrow-forward"></paper-icon-button>
-    </div>
-</div>
-<core-collapse id="collapse5">
-    <div class="content">
-        <div>Boston marathon already passed. See results <a href="http://www.baa.org/" target="_blank">BAA</a></div>
-        <br>
-        <div>
-            <paper-button raised class="colored" on>Delete event</paper-button>
-            <paper-button raised class="colored" on>Publish results</paper-button>
-        </div>
-    </div>
-</core-collapse>
+<events-list></events-list>
 <paper-fab icon="add" class="button_right"></paper-fab>
+
+<polymer-element name="events-list" layout vertical>
+
+    <template>
+        <style>
+
+            paper-button.colored {
+                color: #4285f4;
+            }
+
+            paper-button[raised].colored {
+                background: #4285f4;
+                color: #fff;
+            }
+
+            paper-button.custom > core-icon {
+                margin-right: 4px;
+            }
+
+            paper-button.hover:hover {
+                background: #eee;
+            }
+
+            paper-button.blue-ripple::shadow #ripple {
+                color: #4285f4;
+            }
+
+            .heading {
+                display: block;
+                padding: 10px 15px;
+                background-color: #51f353;
+                border: 1px solid #dedede;
+                border-top-left-radius: 5px;
+                border-top-right-radius: 5px;
+                font-size: 18px;
+                cursor: pointer;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+                -webkit-tap-highlight-color: rgba(0,0,0,0);
+            }
+
+            .heading-gone {
+                padding: 10px 15px;
+                background-color: #c9c9c9;
+                border: 1px solid #dedede;
+                border-top-left-radius: 5px;
+                border-top-right-radius: 5px;
+                font-size: 18px;
+                cursor: pointer;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+                -webkit-tap-highlight-color: rgba(0,0,0,0);
+            }
+
+            .content {
+                padding: 15px;
+                border: 1px solid #dedede;
+            }
+            .toolbar {
+                position:  relative;
+                float: right;
+                bottom: 10px;
+            }
+
+            .stuff {
+                min-height: 60px;
+                background: red !important;
+                border-bottom: 1px solid black;
+            }
+
+            section {
+                padding: 20px 0;
+            }
+
+            section > div {
+                padding: 14px;
+                font-size: 16px;
+            }
+
+
+            .button_right {
+                position: relative;
+                float: right;
+                top: 50px;
+            }
+
+        </style>
+    <template repeat="{{model in data}}">
+
+
+        <div class="heading" onclick="this.shadowRoot().querySelectorAll('#collapse50').toggle();">{{model.name}} 1.5.2011
+            <div class="toolbar">
+                <paper-icon-button icon="menu"></paper-icon-button>
+                <paper-icon-button icon="arrow-forward"></paper-icon-button>
+            </div>
+        </div>
+        <core-collapse id="collapse50" >
+            <div class="content">
+                <div>{{model.name}} See results <a href="http://www.baa.org/" target="_blank">BAA</a></div>
+                <br>
+                <div>
+                    <paper-button raised class="colored" on>Delete event</paper-button>
+                    <paper-button raised class="colored" on>Publish results</paper-button>
+                </div>
+            </div>
+        </core-collapse>
+
+        <br/>
+    </template>
+    </template>
+    <script type="application/dart" src="paper_events2.dart"></script>
+</polymer-element>
+
 
 </body>
 </html>

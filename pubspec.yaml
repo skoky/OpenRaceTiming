@@ -13,6 +13,7 @@ dependencies:
   redstone: any
   redstone_web_socket: ">=0.0.2 <0.1.0"
   shelf_static: ">=0.2.1 <0.3.0"
+  core_elements: any
   paper_elements: any
   redstone_mapper_mongo: ">=0.1.2 <0.2.0"
 
