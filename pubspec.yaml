@@ -16,6 +16,7 @@ dependencies:
   core_elements: any
   paper_elements: any
   redstone_mapper_mongo: ">=0.1.2 <0.2.0"
+  html_components: any
 
 
 transformers:
@@ -26,6 +27,8 @@ transformers:
     - web/paper_events.html
     - web/paper_events2.html
     - web/paper_racers.html
+    - web/table.html
+    - web/edit.html
 
 dev_dependencies:
   unittest: any

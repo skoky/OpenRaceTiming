@@ -18,9 +18,9 @@ class DeviceConnector {
   DeviceConnector(EventBus bus) {
     print("Path:" + Platform.script.resolve('../lib/device/config.yaml').toFilePath());
     String config = new File("../lib/device/config.yaml").readAsStringSync();
-    YamlMap m = loadYaml(config);
-    modules = m['devices'].split(new RegExp(" "));
-    print("modules:" + JSON.encode(modules));
+//    YamlMap m = loadYaml(config);
+//    modules = m['devices'].split(new RegExp(" "));
+//    print("modules:" + JSON.encode(modules));
 
     MirrorSystem mirrors = currentMirrorSystem();
     LibraryMirror lm = mirrors.libraries.values.firstWhere(
