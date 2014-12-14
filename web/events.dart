@@ -3,10 +3,14 @@ import 'dart:html';
 import 'package:html_components/html_components.dart' show DatatableComponent, GrowlComponent;
 import 'data/event.dart' as data;
 
+
 @CustomTag('datatable-edit-demo')
 class DatatableEditDemo extends PolymerElement {
 
-  @observable List<data.Car> cars = toObservable(data.cars);
+
+  Event _selectedItem;
+
+  @observable List<data.Event> events = toObservable(data.events);
 
   DatatableEditDemo.created() : super.created();
 
@@ -14,12 +18,17 @@ class DatatableEditDemo extends PolymerElement {
     GrowlComponent.postMessage('', 'Item edited!');
   }
 
+  void onItemSelected(Event event, var detail, DatatableComponent target) {
+    _selectedItem = target.selectedItems.first;
+    GrowlComponent.postMessage('Selected items:', _selectedItem.toString());
+  }
+
   void openEvent(Event event, var detail, DatatableComponent target) {
-    GrowlComponent.postMessage('', 'Open event '+target);
+    GrowlComponent.postMessage('Open event ',_selectedItem.toString());
   }
 
   void addEvent(Event event, var detail, DatatableComponent target) {
-    GrowlComponent.postMessage('', 'Add event');
+    GrowlComponent.postMessage('', 'Add new event');
   }
 
 }

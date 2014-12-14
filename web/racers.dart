@@ -1,12 +1,12 @@
 import 'package:polymer/polymer.dart';
 import 'dart:html';
 import 'package:html_components/html_components.dart' show DatatableComponent, GrowlComponent;
-import 'data/event.dart' as data;
+import 'data/racer.dart' as data;
 
 @CustomTag('datatable-edit-demo')
 class DatatableEditDemo extends PolymerElement {
 
-  @observable List<data.Car> cars = toObservable(data.cars);
+  @observable List<data.Racer> events = toObservable(data.racers);
 
   DatatableEditDemo.created() : super.created();
 

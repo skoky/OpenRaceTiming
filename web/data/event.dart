@@ -1,91 +1,52 @@
-class Car {
-  String model;
-  String manufacturer;
-  int year;
-  bool warranty;
+class Event {
+  String name;
+  String location;
+  String categories;
 
-  Car(this.model, this.manufacturer, this.year, this.warranty);
+  Event(this.name, this.location, this.categories);
 
-  String get imagePath => '${manufacturer}.jpg';
-
-  String toString() => model;
+  String toString() => name;
 }
 
-List<Car> _cars = [
-    new Car("107f6514", "Honda", 2012, true),
-    new Car("4c182d41", "Audi", 1965, false),
-    new Car("b32ff478", "Chrysler", 1990, true),
-    new Car("9a657f4d", "Ferrari", 2005, false),
-    new Car("e79e04ac", "Opel", 2002, false),
-    new Car("c26b4bdd", "Mercedes", 1968, true),
-    new Car("0f7c6bf8", "Mercedes", 2005, false),
-    new Car("2e18d596", "Honda", 1988, false),
-    new Car("55f8ae33", "Opel", 1985, false),
-    new Car("ead885f7", "Volkswagen", 2005, false),
-    new Car("b4d60a09", "BMW", 1995, false),
-    new Car("bf503dea", "Opel", 2006, false),
-    new Car("09edd664", "Volvo", 1976, false),
-    new Car("004dfda3", "Chrysler", 1999, false),
-    new Car("48dccaa5", "Mercedes", 1983, true),
-    new Car("a2d920ab", "Audi", 1971, true),
-    new Car("e392f591", "Mercedes", 2005, false),
-    new Car("9585cac1", "Mercedes", 2008, true),
-    new Car("edfecf6d", "Opel", 1975, false),
-    new Car("1968e984", "Honda", 1989, false),
-    new Car("cae24651", "BMW", 1974, false),
-    new Car("b9fe01bb", "Renault", 2001, true),
-    new Car("b45964f6", "Renault", 2005, true),
-    new Car("039040ee", "Volkswagen", 1976, true),
-    new Car("395a1c95", "Chrysler", 2003, false),
-    new Car("71d3e760", "Chrysler", 2003, true),
-    new Car("ff12cf33", "BMW", 1983, true),
-    new Car("e6590710", "Ferrari", 2009, true),
-    new Car("27da1304", "Honda", 1987, true),
-    new Car("bff9afd9", "Volvo", 1976, true),
-    new Car("a77b396f", "Mercedes", 1971, false),
-    new Car("e51d6ab0", "Ferrari", 1961, true),
-    new Car("dd9dc756", "Volkswagen", 2003, false),
-    new Car("b46bd077", "Chrysler", 1963, false),
-    new Car("92aa8974", "Renault", 1991, true),
-    new Car("ba8d99b6", "Volvo", 2003, true),
-    new Car("193808e9", "Volvo", 1967, true),
-    new Car("5ab07802", "Chrysler", 1975, true)
+List<Event> _events = [
+    new Event("Boston marathon", "Boston", "---"),
+    new Event("Prague marathon", "Boston", "---"),
 ];
 
-List<Car> get cars => new List<Car>.generate(
-    _cars.length,
-        (int index) => new Car(_cars[index].model, _cars[index].manufacturer, _cars[index].year, _cars[index].warranty),
+List<Event> get events => new List<Event>.generate(
+    _events.length,
+        (int index) => new Event(_events[index].name, _events[index].location, _events[index].categories),
     growable: true
 );
-List<Car> getCars(int count) => cars.take(count);
+List<Event> getEvents(int count) => events.take(count);
 
-abstract class CarConverter {
+abstract class EventsConverter {
 
-  String carToString(var car) {
-    String manufacturer = '';
-    String model = '';
+  String eventToString(var event) {
+    String name = '';
+    String location = '';
 
-    if (car is Map) {
-      manufacturer = car['manufacturer'];
-      model = car['model'];
+    if (event is Map) {
+      name = event['name'];
+      location = event['location'];
     }
-    else if (car is Car) {
-      manufacturer = car.manufacturer;
-      model = car.model;
+    else if (event is Event) {
+      name = event.name;
+      location = event.location;
     }
 
-    return '$manufacturer ($model)';
+    return '$name ($location)';
   }
 
-  String carsToString(List<Car> cars) {
-    if (cars.isEmpty) {
+  String eventsToString(List<Event> events) {
+    if (events.isEmpty) {
       return 'none';
     }
 
     StringBuffer resultBuffer = new StringBuffer();
 
-    for (Car car in cars) {
-      resultBuffer.write('${car.model}, ');
+    for (Event event in events) {
+      resultBuffer.write('${event.name}, ');
     }
 
     String result = resultBuffer.toString();
