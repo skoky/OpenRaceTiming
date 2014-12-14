@@ -47,7 +47,7 @@ void main() {
   // start web server
   app.start(port: 8082);
   app.setShelfHandler(createStaticHandler("../web",
-    defaultDocument: "ort_console.html",
+    defaultDocument: "index.html",
     serveFilesOutsidePath: true));
 
   var staticFiles = new VirtualDirectory('.')

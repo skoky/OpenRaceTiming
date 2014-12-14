@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Utility - Clock</title>
+    <script src="packages/web_components/platform.js"></script>
+    <link rel="import" href="packages/polymer/polymer.html">
+    <link rel="import" href="packages/html_components/data/column.html">
+    <link rel="import" href="packages/html_components/data/datatable.html">
+    <link rel="import" href="packages/html_components/utility/growl.html">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+    <link href="packages/core_elements/core_icons.html" rel="import">
+    <link href="packages/paper_elements/roboto.html" rel="import">
+    <link rel="import" href="packages/paper_elements/paper_button.html">
+    <link rel="import" href="packages/paper_elements/paper_icon_button.html">
+    <link rel="import" href="packages/paper_elements/paper_fab.html" >
+<style>
+
+    .button_red {
+        position: relative;
+        float: right;
+        margin-left: 10px;
+    }
+    .button_green {
+        position: relative;
+        float: right;
+        margin-left: 10px;
+        background: #259b24;
+    }
+
+    .table {
+        position: relative;
+        top: 20px;
+        margin-bottom: 10px;
+    }
+</style>
+</head>
+<body>
+<polymer-element name="datatable-edit-demo">
+    <template>
+        <h-datatable data="{{cars}}" paginatorPosition="bottom" rows="15" selection="single"
+                     on-edited="{{onItemEdited}}">
+            <h-column property="model" type="string" editable>
+                <header>Model</header>
+            </h-column>
+
+            <h-column property="manufacturer" type="string" editable>
+                <header>Manufacturer</header>
+            </h-column>
+
+            <h-column property="year" type="numeric" editable>
+                <header>Year</header>
+            </h-column>
+
+            <h-column property="warranty" type="boolean" editable textAlign="center">
+                <header>Has Warranty?</header>
+            </h-column>
+        </h-datatable>
+
+        <h-growl lifetime="5000"></h-growl>
+    </template>
+
+    <script type="application/dart" src="events.dart"></script>
+</polymer-element>
+
+<div>
+    <paper-fab icon="done" green class="button_green" ></paper-fab>
+    <paper-fab icon="add" class="button_red" on-tap="{{addEvent}}"></paper-fab>
+</div>
+<div class="table">
+    <datatable-edit-demo></datatable-edit-demo>
+</div>
+
+</body>
+</html>

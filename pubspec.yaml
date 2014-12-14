@@ -22,13 +22,13 @@ dependencies:
 transformers:
 - polymer:
     entry_points:
-    - web/ort.html
+    - web/index.html
     - web/events3.html
     - web/paper_events.html
     - web/paper_events2.html
-    - web/paper_racers.html
-    - web/table.html
-    - web/edit.html
+    - web/create_event.html
+    - web/events.html
+    - web/racers.html
 
 dev_dependencies:
   unittest: any

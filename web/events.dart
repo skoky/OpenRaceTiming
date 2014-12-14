@@ -1,7 +1,7 @@
 import 'package:polymer/polymer.dart';
 import 'dart:html';
 import 'package:html_components/html_components.dart' show DatatableComponent, GrowlComponent;
-import 'data/car.dart' as data;
+import 'data/event.dart' as data;
 
 @CustomTag('datatable-edit-demo')
 class DatatableEditDemo extends PolymerElement {
@@ -12,6 +12,14 @@ class DatatableEditDemo extends PolymerElement {
 
   void onItemEdited(Event event, var detail, DatatableComponent target) {
     GrowlComponent.postMessage('', 'Item edited!');
+  }
+
+  void openEvent(Event event, var detail, DatatableComponent target) {
+    GrowlComponent.postMessage('', 'Open event '+target);
+  }
+
+  void addEvent(Event event, var detail, DatatableComponent target) {
+    GrowlComponent.postMessage('', 'Add event');
   }
 
 }
