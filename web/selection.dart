@@ -17,3 +17,5 @@ class DatatableSelectionDemo extends PolymerElement with data.CarConverter {
   }
 
 }
+
+main() => initPolymer();

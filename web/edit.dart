@@ -15,3 +15,5 @@ class DatatableEditDemo extends PolymerElement {
   }
 
 }
+
+main() => initPolymer();

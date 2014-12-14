@@ -3,13 +3,12 @@
 <head>
     <title>Utility - Clock</title>
     <script src="packages/web_components/platform.js"></script>
-    <script src="packages/web_components/dart_support.js"></script>
-    <link rel="import" href="packages/html_components/utility/clock.html">
     <link rel="import" href="packages/polymer/polymer.html">
     <link rel="import" href="packages/html_components/data/column.html">
     <link rel="import" href="packages/html_components/data/datatable.html">
     <link rel="import" href="packages/html_components/utility/growl.html">
-
+</head>
+<body>
     <polymer-element name="datatable-selection-demo">
         <template>
             <form role="form">
@@ -64,10 +63,6 @@
         <script type="application/dart" src="selection.dart"></script>
     </polymer-element>
 
-</head>
-<body>
-<h-clock size="100"></h-clock>
-<datatable-selection-demo/>
-<script type="application/dart">export 'package:polymer/init.dart';</script>
+<datatable-selection-demo></datatable-selection-demo>
 </body>
 </html>
