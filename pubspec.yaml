@@ -23,9 +23,6 @@ transformers:
 - polymer:
     entry_points:
     - web/index.html
-    - web/events3.html
-    - web/paper_events.html
-    - web/paper_events2.html
     - web/create_event.html
     - web/events.html
     - web/racers.html
