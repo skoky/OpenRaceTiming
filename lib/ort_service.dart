@@ -80,7 +80,7 @@ class OrtService {
   update(@app.Attr() MongoDb dbConn, @app.Body(app.JSON) Object data, String entity, String id) {
     entity = Uri.decodeFull(entity); // for entities with complex names
     logger.info("Insert/update $entity with id $id");
-    return dbConn.update(entity, data).catchError((e) {
+    return dbConn.update(entity, {"_id": ObjectId.parse(id)}, data,upsert:true).catchError((e) {
       logger.warning("Unable to update item: $e");
     });
   }
