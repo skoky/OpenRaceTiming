@@ -18,6 +18,7 @@ dependencies:
   redstone_mapper_mongo: ">=0.1.2 <0.2.0"
   html_components: any
   logging: ">=0.9.2 <0.10.0"
+  json_object: any
 
 
 transformers:

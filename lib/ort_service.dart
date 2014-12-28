@@ -34,6 +34,7 @@ class OrtService {
     if (queryAttribute == null && queryString == null)
       return dbConn.collection(entity).find(where.limit(limit)).toList().catchError((e) {
         logger.warning("Unable to get item: $e");
+        throw e;
       });
     else {
       if (queryString == null || queryAttribute == null)
@@ -56,6 +57,7 @@ class OrtService {
     mongoBson.ObjectId mid = mongoBson.ObjectId.parse(id);
     return dbConn.collection(entity).find(where.id(mid)).toList().catchError((e) {
       logger.warning("Unable to get item: $e");
+      throw e;
     });
   }
 
@@ -71,6 +73,7 @@ class OrtService {
     logger.info("Insert into $entity ");
     return dbConn.insert(entity, data).catchError((e) {
       logger.warning("Unable to update item: $e");
+      throw e;
     });
   }
 
@@ -82,6 +85,7 @@ class OrtService {
     logger.info("Insert/update $entity with id $id");
     return dbConn.update(entity, {"_id": ObjectId.parse(id)}, data,upsert:true).catchError((e) {
       logger.warning("Unable to update item: $e");
+      throw e;
     });
   }
 
@@ -100,6 +104,7 @@ class OrtService {
       logger.info("Mongodb: $dbRes");
     }).catchError((e) {
       logger.warning("Unable to update item: $e");
+      throw e;
     });
   }
 }

@@ -39,12 +39,13 @@
             <paper-fab icon="add" class="button_red" on-tap="{{addEvent}}"></paper-fab>
         </div>
 
-        <h-datatable data="{{events}}" paginatorPosition="bottom" rows="15" selection="single"
+        <h-datatable source="/ui/event"  paginatorPosition="bottom" rows="15" selection="single"
                      on-edited="{{onItemEdited}}" on-selected="{{onItemSelected}}">
             <h-column property="name" type="string" editable>
                 <header>Name</header>
             </h-column>
 
+<!--
             <h-column property="location" type="string" editable>
                 <header>Location</header>
             </h-column>
@@ -52,6 +53,7 @@
             <h-column property="categories" type="string" >
                 <header>Categories</header>
             </h-column>
+-->
 
         </h-datatable>
 

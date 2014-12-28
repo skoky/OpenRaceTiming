@@ -17,6 +17,8 @@ import 'package:redstone_mapper_mongo/manager.dart';
 @app.Install()
 import 'package:OpenRaceTiming/ort_service.dart';
 
+@app.Install()
+import 'package:OpenRaceTiming/presenter/presenter_service.dart';
 
 EventBus _bus = new EventBus();
 
