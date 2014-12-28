@@ -30,8 +30,11 @@ class PresenterService {
   @Encode()
   Future<String> saveEntity(@app.Attr() MongoDb dbConn, String entity, @app.Body(app.TEXT) Object data) {
     var  dataJson = JsonObject.decoder.convert(data);
-    String id = dataJson["_id"].split("\"")[1]; // id must be extracted from data to be found in DB
-    dataJson.remove("_id");
+    String id=null;
+    if (dataJson["_id"]!=null) {
+      id = dataJson["_id"].split("\"")[1]; // id must be extracted from data to be found in DB
+      dataJson.remove("_id");
+    }
     return new OrtService().update(dbConn,dataJson, entity, id);
   }
 

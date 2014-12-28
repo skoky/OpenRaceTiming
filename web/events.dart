@@ -10,9 +10,12 @@ class DatatableEditDemo extends PolymerElement {
 
   var _selectedItem;
 
-  @observable List<data.Event> events; // = [new data.Event("111","222","333")]; // = toObservable(data.events);
+  @observable List<data.Event> events;
+
+  // = [new data.Event("111","222","333")]; // = toObservable(data.events);
 
   DatatableEditDemo.created() : super.created();
+
 //  {
 //    events = new List();
 //    events.add(new data.Event("aaa","bbb","ccc"));
@@ -23,18 +26,22 @@ class DatatableEditDemo extends PolymerElement {
   }
 
   void onItemSelected(Event event, var detail, DatatableComponent target) {
-    if (target.selectedItems.isEmpty) return;
+    if (target.selectedItems.isEmpty)
+        _selectedItem=null;
+     else
     _selectedItem = target.selectedItems.first;
-    GrowlComponent.postMessage('Selected items:', _selectedItem.toString());
+//    GrowlComponent.postMessage('Selected items:', _selectedItem.toString());
   }
 
-  void openEvent(Event event, var detail, DatatableComponent target) {
-    GrowlComponent.postMessage('Open event ',_selectedItem.toString());
+  void openEvent(Event event, var detail, var target) {
+    if (_selectedItem == null)
+      GrowlComponent.postMessage('Select event to open', "");
+    else
+      GrowlComponent.postMessage('Open event ', _selectedItem.toString());
   }
 
-  void addEvent(Event event, var detail, DatatableComponent target) {
-    events.add(new data.Event("qqq","www","sss"));
-    GrowlComponent.postMessage('', 'Add new event $events.length');
+  void addEvent(Event event, var detail, var target) {
+    GrowlComponent.postMessage('', 'Add new event pressed');
   }
 
 
@@ -45,7 +52,6 @@ class DatatableEditDemo extends PolymerElement {
     ];
   }
 }
-
 
 
 main() => initPolymer();
