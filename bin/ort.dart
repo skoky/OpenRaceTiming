@@ -12,6 +12,7 @@ import 'package:OpenRaceTiming/presenter/presenter.dart';
 import 'package:shelf_static/shelf_static.dart';
 import 'package:redstone_mapper/plugin.dart';
 import 'package:redstone_mapper_mongo/manager.dart';
+import 'package:logging/logging.dart';
 
 
 @app.Install()
@@ -20,17 +21,23 @@ import 'package:OpenRaceTiming/ort_service.dart';
 @app.Install()
 import 'package:OpenRaceTiming/presenter/presenter_service.dart';
 
+final Logger log = new Logger('ORT');
+
+final int HTTP_PORT=8082;
+final int WS_PORT=8083;
+
 EventBus _bus = new EventBus();
 
 handleMsg(msg) {
-  print('Message received: $msg');
+  log.fine('Message received: $msg');
 }
 
 WebSocket webSocket;
 
+
 void main() {
 
-  app.setupConsoleLog();
+  app.setupConsoleLog(Level.INFO);  // change to WARNING to be less verbose
 
   // init modules
   var m = new MongoStorage();
@@ -47,34 +54,35 @@ void main() {
   new DeviceConnector(_bus);
 
   // start web server
-  app.start(port: 8082);
+  app.start(port: HTTP_PORT);
   app.setShelfHandler(createStaticHandler("../web",
     defaultDocument: "index.html",
     serveFilesOutsidePath: true));
+  log.info("Starting web server on port $HTTP_PORT");
 
   var staticFiles = new VirtualDirectory('.')
     ..allowDirectoryListing = true;
 
   // websocket publishing back to client
   runZoned(() {
-    HttpServer.bind('127.0.0.1', 8083).then((server) {
-      print("push websocket init");
+    HttpServer.bind('127.0.0.1', WS_PORT).then((server) {
+      log.info("push websocket init on port $WS_PORT");
       server.listen((HttpRequest req) {
         if (req.uri.path == '/ws') {
           // Upgrade a HttpRequest to a WebSocket connection.
           WebSocketTransformer.upgrade(req).then((socket) {
             socket.listen(handleMsg);
             webSocket = socket;
-            print("Push websocket done");
+            log.fine("Push websocket done");
           });
         }
       });
     });
   },
-  onError: (e, stackTrace) => print('Oh noes! $e $stackTrace'));
+  onError: (e, stackTrace) => log.severe('Oh noes! $e $stackTrace'));
   _bus.on(OrtEvent, (OrtEvent event) => updateRecords(webSocket,event));  // assigning handlers
-  print("Zoned done on $webSocket");
-  print("startup done");
+  log.info("Zoned done on $webSocket");
+  log.fine("startup done");
 }
 
 @WebSocketHandler("/ws")

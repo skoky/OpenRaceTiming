@@ -10,8 +10,11 @@ import 'dart:io';
 import 'package:event_commander/event_commander.dart';
 import 'package:OpenRaceTiming/ort_common.dart';
 import 'dart:math';
+import 'package:logging/logging.dart';
 
 class TranX3Simulator {
+
+  final Logger log = new Logger('TranX3Simulator');
 
   EventBus bus;
   var data;
@@ -23,14 +26,14 @@ class TranX3Simulator {
 
   processEvent([key]) {
     if (key==null) key=0;
-    print("K:$key");
+    log.finest("K:$key");
     Map nextStep = sequence[key];
     if (nextStep==null) {
       key=0;
       nextStep = sequence[key];
     }
     int delay=10;
-    print("Processing:"+nextStep.toString());
+    log.finest("Processing:"+nextStep.toString());
     if (nextStep['delay'] !=null) {
       delay = nextStep['delay'];
       if (nextStep['unit']=="sec") delay = delay * 1000;
@@ -44,10 +47,10 @@ class TranX3Simulator {
       nextStep['decoderId']=decoderId;
       bus.signal(new OrtEvent('device/TranX3/Passings', passing));
     } else {
-      print("Invalid:"+nextStep["passing"]);
+      log.info("Invalid:"+nextStep["passing"]);
     }
-    print("Key $key end");
-    new Future.delayed(new Duration(milliseconds:delay),()=> processEvent(key+1)).then(print("Wait: $delay ms"));
+    log.fine("Key $key end");
+    new Future.delayed(new Duration(milliseconds:delay),()=> processEvent(key+1)).then(log.finest("Wait: $delay ms"));
 
   }
 
@@ -65,7 +68,7 @@ class TranX3Simulator {
 
     new Future.delayed(new Duration(seconds:1),
         () => processEvent());
-    print("simul end");
+    log.fine("simul end");
   }
 
 

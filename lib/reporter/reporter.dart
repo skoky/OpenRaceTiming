@@ -2,6 +2,6 @@
 class Reporter {
 
   Reporter() {
-    print("Hello world from reporter");
+    log.fine("Hello world from reporter");
   }
 }

@@ -3,14 +3,17 @@ import 'package:mongo_dart/mongo_dart.dart';
 import 'package:event_commander/event_commander.dart';
 import 'package:redstone/server.dart' hide JSON;
 import 'package:OpenRaceTiming/ort_common.dart';
-
+import 'package:logging/logging.dart';
 /*
  * Stores data into MongoDB
  * Examples: https://github.com/vadimtsushko/mongo_dart/tree/master/example
  * MongoDB installation: http://docs.mongodb.org/manual/installation/
  */
 
+final Logger log = new Logger('Storage');
+
 class MongoStorage extends Storage {
+
 
   EventBus _bus;
 
@@ -25,7 +28,7 @@ class MongoStorage extends Storage {
 
   void processEvent(OrtEvent event) {
 
-    print("Storing:" + event.selector);
+    log.fine("Storing:" + event.selector);
 
     if (event.selector.startsWith("device/")) {
       store(event);
@@ -42,7 +45,7 @@ class MongoStorage extends Storage {
     db.open().then((_) {
       c = db.collection(event.selector);
       Map data = JSON.decode(event.jsonData);
-      print("Updating data $data");
+      log.fine("Updating data $data");
       c.update(where.eq(selectorId, selectorV), data, upsert: true, writeConcern: WriteConcern.ACKNOWLEDGED)
       .then((_) {
         db.close();
@@ -57,7 +60,7 @@ class MongoStorage extends Storage {
     DbCollection c;
     db.open().then((_) {
       c = db.collection(event.selector);
-      print("Storing passing " + event.jsonData);
+      log.fine("Storing passing " + event.jsonData);
       Map data = JSON.decode(event.jsonData);
       c.insert(data, writeConcern: WriteConcern.ACKNOWLEDGED)
       .then((_) {

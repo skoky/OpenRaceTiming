@@ -7,16 +7,18 @@ import 'dart:mirrors';
 import 'test/testdevice.dart';
 import 'package:event_commander/event_commander.dart';
 import 'tranx/TranXDeviceSimulator.dart';
+import 'package:logging/logging.dart';
 
 class DeviceConnector {
 
+  final Logger log = new Logger('DeviceConnector');
 
   List<String> modules;
   EventBus bus;
   var device; // active device
 
   DeviceConnector(EventBus bus) {
-    print("Path:" + Platform.script.resolve('../lib/device/config.yaml').toFilePath());
+    log.fine("Path:" + Platform.script.resolve('../lib/device/config.yaml').toFilePath());
     String config = new File("../lib/device/config.yaml").readAsStringSync();
 //    YamlMap m = loadYaml(config);
 //    modules = m['devices'].split(new RegExp(" "));

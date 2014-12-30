@@ -1,31 +1,32 @@
 import 'dart:io';
 import 'package:OpenRaceTiming/ort_common.dart';
 import 'package:redstone_web_socket/redstone_web_socket.dart';
+import 'package:logging/logging.dart';
 
-
+final Logger log = new Logger('Presenter');
 
 class PresenterWs extends OrtModule {
 
   @OnOpen()
   void onOpen(WebSocketSession session) {
-    print("connection established");
+    log.fine("connection established");
 
   }
 
   @OnMessage()
   void onMessage(String message, WebSocketSession session) {
-    print("message received: $message");
+    log.fine("message received: $message");
     session.connection.add("echo $message");
   }
 
   @OnError()
   void onError(error, WebSocketSession session) {
-    print("error: $error");
+    log.severe("error: $error");
   }
 
   @OnClose()
   void onClose(WebSocketSession session) {
-    print("connection closed");
+    log.fine("connection closed");
   }
 
 }
@@ -34,8 +35,8 @@ class PresenterWs extends OrtModule {
 void updateRecords(WebSocket webSocket,OrtEvent event) {
   if (event.selector.startsWith("calculator/")) {
     if (webSocket != null) {
-      print("Propagating event to GUI:" + event.jsonData);
+      log.fine("Propagating event to GUI:" + event.jsonData);
       webSocket.add(event.jsonData);
-    } else print("No websocket");
+    } else log.finest("No websocket");
   }
 }
