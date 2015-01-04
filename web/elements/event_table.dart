@@ -31,7 +31,8 @@ class EventsEdit extends PolymerElement {
   }
 
   void addEvent(Event event, var detail, var target) {
-    GrowlComponent.postMessage('', 'Add new event pressed');
+//    querySelector("create-event").hidden = false;
+//    GrowlComponent.postMessage('', 'Add new event pressed');
   }
 
 
