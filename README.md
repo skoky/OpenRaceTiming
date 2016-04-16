@@ -25,11 +25,14 @@ For detail list of planned features see this WIki [https://github.com/skoky/Open
 * `Event wizard` - drivers user from an event creation, data entry and timing processing
 
 Modules are interconnected by flexible, multi-structure, performing bus way. The bus is in memory native communication
-among modules based on a standard data structure like JSON.
+among modules based on a standard data structure like JSON. Each module is a micro-service from design pattern point of view.
 
 All modules should be tight together with calculator as it defines data to be calculated for racer and event. Screens and
 datastore should be flexible to show and store it. Reporter should has in-place editor to edit reporting layout and connection to
 publishing destinations.
+
+Core race evennt procesing component should use `event sourcing` and an essential pattern for race event handling. Events might be handled from device to and event store. These should be also published to the bus for another components to recalculate results, update result boards, announce changes or even alert a race director if necessary.
+
 
 ## Physical modules
 
