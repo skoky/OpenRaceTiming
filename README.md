@@ -1,9 +1,9 @@
 Open Race Timing software
 ==============
 
-**** WORK IN PROGRESS ***
+**** THIS IS A DESIGN CONCEPT ***
 
-This will be an universal+modular and open race timing software. Why should be all race timing softwares tightly coupled
+Imagine an universal+modular and open race timing software. Why should be all race timing softwares tightly coupled
 to one or few sports only? Why should be more ambitious timing solution complex? Why are all working timing softwares
 closed-source? How can public make sure that timing is calculated properly if it's sources are not public?
 
@@ -41,15 +41,6 @@ browser instance and presents data. Based on logged in user there is visible eit
 reporting and management as well.
 
 ![Modules structure - physical](https://raw.githubusercontent.com/skoky/OpenRaceTiming/master/doc/ORT%20Module%20physical.png)
-
-## Screen wireframes
-
-Screens are visible artifacts for the user. We have prepared a `very raw` design of screens and screen flow to have a
-starting point for discussion. Join us and review screen design to cover requirements you need on for you favorite sport.
-
-![Open Race Timing modules](https://raw.githubusercontent.com/skoky/OpenRaceTiming/master/doc/mockups.png)
-
-All screens are based on tables. These should be very flexible to make sure users comfort while presenting data.
 
 If you need more ORT details, see our [Wiki](https://github.com/skoky/OpenRaceTiming/wiki)
 
