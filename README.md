@@ -9,7 +9,7 @@ closed-source? How can public make sure that timing is calculated properly if it
 
 We are trying to answer these questions by modular open-source timing software. Interested? Join us. All kind of experiences welcome!
 
-For detail list of planned features see this WIki [https://github.com/skoky/OpenRaceTiming/wiki/Detailed-features]
+For detail list of planned features see this WIki [https://github.com/skoky/OpenRaceTiming/wiki]
 
 ## Logical module
 
